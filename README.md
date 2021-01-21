@@ -1,2 +1,2 @@
-# tailwind-playground
-Just me messing around with Tailwind CSS
+# bulma-playground
+Just me messing around with Bulma CSS
