@@ -27,10 +27,151 @@
                 <div class="tile is-parent">
                     <article class="tile is-child notification is-success">
                         <div class="content">
-                            <p class="title">Search and Filter Navigation</p>
-                            <p class="subtitle">for Foods / Movies / Drinks</p>
+                            <p class="title">Select Your Options</p>
+                            <p class="subtitle">for Movies / Meals / Drinks</p>
                             <div class="content">
-                                <!-- Content -->
+                                <!-- Movie -->
+                                <div class="field">
+                                    <label class="label">Movie</label>
+                                    <div class="field has-addons">
+                                        <div class="control is-expanded">
+                                            <div class="select is-fullwidth">
+                                                <select name="movie">
+                                                    <option>Select by Genre</option>
+                                                    <option value="Any">- Any -</option>
+                                                    <option value="28">Action</option>
+                                                    <option value="12">Adventure</option>
+                                                    <option value="16">Animation</option>
+                                                    <option value="35">Comedy</option>
+                                                    <option value="80">Crime</option>
+                                                    <option value="99">Documentary</option>
+                                                    <option value="18">Drama</option>
+                                                    <option value="10751">Family</option>
+                                                    <option value="14">Fantasy</option>
+                                                    <option value="36">History</option>
+                                                    <option value="27">Horror</option>
+                                                    <option value="10402">Music</option>
+                                                    <option value="9648">Mystery</option>
+                                                    <option value="10749">Romance</option>
+                                                    <option value="878">Science Fiction</option>
+                                                    <option value="10770">TV Movie</option>
+                                                    <option value="53">Thriller</option>
+                                                    <option value="10752">War</option>
+                                                    <option value="37">Western</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="control">
+                                          <button type="submit" class="button is-primary">Find</button>
+                                        </div>
+                                    </div>
+                                    <label class="checkbox m-2">
+                                        <input type="checkbox">
+                                        Netflix
+                                    </label>
+                                    <label class="checkbox m-2">
+                                        <input type="checkbox">
+                                        Hulu
+                                    </label>
+                                    <label class="checkbox m-2">
+                                        <input type="checkbox">
+                                        Prime
+                                    </label>
+                                    <label class="checkbox m-2">
+                                        <input type="checkbox">
+                                        Disney+
+                                    </label>
+                                    <label class="checkbox m-2">
+                                        <input type="checkbox">
+                                        HBO Max
+                                    </label>
+                                </div>
+                                <!-- Meal -->
+                                <div class="field mt-5">
+                                    <label class="label">Meal</label>
+                                    <div class="field has-addons">
+                                        <div class="control is-expanded">
+                                            <div class="select is-fullwidth">
+                                                <select name="meal-type">
+                                                    <option>Select by Type</option>
+                                                    <option value="Any">- Any -</option>
+                                                    <option value="Beef">Beef</option>
+                                                    <option value="Chicken">Chicken</option>
+                                                    <option value="Desert">Desert</option>
+                                                    <option value="Lamb">Lamb</option>
+                                                    <option value="Miscellaneous">Miscellaneous</option>
+                                                    <option value="Pasta">Pasta</option>
+                                                    <option value="Pork">Pork</option>
+                                                    <option value="Seafood">Seafood</option>
+                                                    <option value="Vegan">Vegan</option>
+                                                    <option value="Vegetarian">Vegetarian</option>
+                                                    <option value="Breakfast">Breakfast</option>
+                                                    <option value="Goat">Goat</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="control">
+                                          <button type="submit" class="button is-primary">Find</button>
+                                        </div>
+                                    </div>
+
+                                    <p class="mt-2">or</p>
+
+                                    <div class="field has-addons">
+                                        <div class="control is-expanded">
+                                            <div class="select is-fullwidth">
+                                                <select name="meal-country">
+                                                    <option>Select by Country</option>
+                                                    <option value="">- Any -</option>
+                                                    <option value="">American</option>
+                                                    <option value="">British</option>
+                                                    <option value="">Canadian</option>
+                                                    <option value="">Chinese</option>
+                                                    <option value="">Dutch</option>
+                                                    <option value="">Egyptian</option>
+                                                    <option value="">French</option>
+                                                    <option value="">Greek</option>
+                                                    <option value="">Indian</option>
+                                                    <option value="">Irish</option>
+                                                    <option value="">Italian</option>
+                                                    <option value="">Jamaican</option>
+                                                    <option value="">Japanese</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="control">
+                                          <button type="submit" class="button is-primary">Find</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Drinks -->
+                                <div class="field mt-6">
+                                    <label class="label">Drinks</label>
+                                    <div class="field has-addons">
+                                        <div class="control is-expanded">
+                                            <div class="select is-fullwidth">
+                                                <select name="drink-type">
+                                                    <option>Select by Type</option>
+                                                    <option value="">- Any -</option>
+                                                    <option value="">Ordinary Drink</option>
+                                                    <option value="">Cocktail</option>
+                                                    <option value="">Milk / Float / Shake</option>
+                                                    <option value="">Other/Unknown</option>
+                                                    <option value="">Cocoa</option>
+                                                    <option value="">Shot</option>
+                                                    <option value="">Coffee / Tea</option>
+                                                    <option value="">Homemade Liqueur</option>
+                                                    <option value="">Punch / Party Drink</option>
+                                                    <option value="">Beer</option>
+                                                    <option value="">Soft Drink / Soda</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="control">
+                                          <button type="submit" class="button is-primary">Find</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -55,7 +196,7 @@
                                     <p class="subtitle" id="tagline">Justice is Coming.</p>
                                     <p class="block" id="overview">Jack Reacher must uncover the truth behind a major government conspiracy in order to clear his name. On the run as a fugitive from the law, Reacher uncovers a potential secret from his past that could change his life forever.</p>
                                     <span class="tag is-dark mb-1" id="vote_averag">Rating: 5.7</span>
-                                    <span class="tag is-dark mb-1" id="popularity">Popularity: 31</span>
+                                    <span class="tag is-dark mb-1" id="popularity">Popularity: 31%</span>
                                     <span class="tag is-dark mb-1" id="runtime">118 mins</span>
                                     <span class="tag is-dark mb-1" id="genres">Action</span>
                                 </article>
