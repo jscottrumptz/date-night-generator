@@ -3,10 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Hello Bulma!</title>
+        <title>Date Night Generator</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     </head>
     <body>
+        <!-- Hero/Header Section -->
         <section class="hero is-link">
             <div class="hero-body">
               <div class="container">
@@ -19,22 +20,26 @@
               </div>
             </div>
         </section>
+        <!-- Main Section -->
         <section class="section">
             <div class="tile is-ancestor">
+                <!-- Search Tile Column -->
                 <div class="tile is-parent">
-                <article class="tile is-child notification is-success">
-                    <div class="content">
-                    <p class="title">Search and Filter Navigation</p>
-                    <p class="subtitle">Food / Movies / Drinks</p>
-                    <div class="content">
-                        <!-- Content -->
-                    </div>
-                    </div>
-                </article>
+                    <article class="tile is-child notification is-success">
+                        <div class="content">
+                            <p class="title">Search and Filter Navigation</p>
+                            <p class="subtitle">for Foods / Movies / Drinks</p>
+                            <div class="content">
+                                <!-- Content -->
+                            </div>
+                        </div>
+                    </article>
                 </div>
+                <!-- Search Results and Saved Results Tile Columns-->
                 <div class="tile is-vertical is-9">
+                    <!-- Movie, Food, and Drink Row -->
                     <div class="tile">
-
+                        <!-- Movie Tile Column -->
                         <div class="tile is-parent">
                             <!-- Movie Section-->
                             <article class="tile is-parent notification is-info">
@@ -56,14 +61,14 @@
                                 </article>
                             </article>
                         </div>
-
+                        <!-- Food and Drink Tile Column -->
                         <div class="tile is-parent is-vertical">
-                           <!-- Food Section -->
+                            <!-- Food Section -->
                             <article class="tile is-parent notification is-primary">
                                  <!-- Food Image-->
                                 <article class="tile is-child is-4" >
                                     <figure class="image is-1x1">
-                                        <img id="poster_path" src="https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg">
+                                        <img id="strMealThumb" src="https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg">
                                     </figure>
                                 </article>
                                 <!-- Food Info-->
@@ -82,65 +87,105 @@
                                     <span class="tag is-dark mb-1" id="strIngredient9">brown rice</span>
                                 </article>
                             </article>
-
                             <!-- Drink Section -->
                             <article class="tile is-parent notification is-warning">
                                  <!-- Drink Image-->
                                 <article class="tile is-child is-4" >
                                     <figure class="image is-1x1">
-                                        <img id="poster_path" src="https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg">
+                                        <img id="strDrinkThumb" src="https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg">
                                     </figure>
                                 </article>
                                 <!-- Drink Info-->
                                 <article class="m-4" >
-                                    <p class="title">Drink Result</p>
-                                    <p class="subtitle">Image with Summary</p>
+                                    <p class="title" id="strDrink">Margarita</p>
+                                    <p class="subtitle" id="strIBA">Contemporary Classics</p>
+                                    <p class="mb-2" id="ingredients">Ingredients</p>
+                                    <span class="tag is-dark mb-1" id="strIngredient1">Tequila</span>
+                                    <span class="tag is-dark mb-1" id="strIngredient2">Triple Sec</span>
+                                    <span class="tag is-dark mb-1" id="strIngredient3">Lime Juice</span>
+                                    <span class="tag is-dark mb-1" id="strIngredient4">Salt</span>
                                 </article>
                             </article>
-
                         </div>
                     </div>
+                    <!-- Saved Results Row -->
                     <div class="tile is-parent">
                         <article class="tile is-child notification is-danger">
-                            <p class="title">Saved Results</p>
-                            <p class="subtitle">Store Previous Saved Reults</p>
-                            <div class="content">
-                            <!-- Content -->
+                            <p class="title">Date Night Queue</p>
+                            <p class="subtitle">Previously Saved Reults</p>
+                            <div class="tile">
+                                <!-- Saved Set -->
+                                <div class="card tile is-parent is-3 m-2" id="saved-set-1">
+                                    <article class="tile is-child" >
+                                        <figure class="image is-2by3 my-2">
+                                            <img id="poster_path" src="https://www.themoviedb.org/t/p/w500/oXwpl4mdd8MYPkUMggREzSf9c5R.jpg">
+                                        </figure>
+                                        <button class="button is-dark is-small is-fullwidth is-rounded">
+                                            Date Night - 1
+                                        </button>
+                                    </article>
+                                    <div class="tile is-child is-vertical">
+                                        <figure class="image is-1x1 m-2">
+                                            <img id="strMealThumb" src="https://www.themealdb.com/images/media/meals/o2wb6p1581005243.jpg">
+                                        </figure>
+                                        <figure class="image is-1x1 m-2">
+                                            <img id="strDrinkThumb" src="https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <!-- Saved Set -->
+                                <div class="card tile is-parent is-3 m-2"  id="saved-set-2">
+                                    <article class="tile is-child" >
+                                        <figure class="image is-2by3 my-2">
+                                            <img id="poster_path" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/whF3YddFYSwJNuHEvi5lpsnty2l.jpg">
+                                        </figure>
+                                        <button class="button is-dark is-small is-fullwidth is-rounded">
+                                            Date Night - 2
+                                        </button>
+                                    </article>
+                                    <div class="tile is-child is-vertical">
+                                        <figure class="image is-1x1 m-2">
+                                            <img id="strMealThumb" src="https://www.themealdb.com/images/media/meals/xr0n4r1576788363.jpg">
+                                        </figure>
+                                        <figure class="image is-1x1 m-2">
+                                            <img id="strDrinkThumb" src="https://www.thecocktaildb.com/images/media/drink/3pylqc1504370988.jpg">
+                                        </figure>
+                                    </div>
+                                </div>
                             </div>
                         </article>
                     </div>
                 </div>
             </div>
         </section>
-
-      <div class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Modal title</p>
-            <button class="delete" aria-label="close"></button>
-          </header>
-          <section class="modal-card-body">
-            <!-- Content ... -->
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button is-success">Save changes</button>
-            <button class="button">Cancel</button>
-          </footer>
+        <!-- Modal -->
+        <div class="modal"> <!-- use the "is-active" class to make visable-->
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Modal title</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    <!-- Content ... -->
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success">Save changes</button>
+                    <button class="button">Cancel</button>
+                </footer>
+            </div>
         </div>
-      </div>
-
-      <footer class="footer">
-        <div class="content has-text-centered">
-          <p>
-            <strong>Date Night Generator</strong> was created by 
-            </br>
-                <a href="https://rumptz.tech" target="_blank">J. Scott Rumptz</a>, <a href=#>Cheryl Fogerty</a>, <a href=#>Sean Johnson</a>, <a href=#>Jared Taylor</a>. 
-            </br>
-                The website was created for educational purposes only.
-          </p>
-        </div>
-      </footer>
-
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Date Night Generator</strong> was created by 
+                    </br>
+                        <a href="https://rumptz.tech" target="_blank">J. Scott Rumptz</a>, <a href=#>Cheryl Fogerty</a>, <a href=#>Sean Johnson</a>, <a href=#>Jared Taylor</a>. 
+                    </br>
+                        The website was created for educational purposes only.
+                </p>
+            </div>
+        </footer>
     </body>
 </html>
