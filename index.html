@@ -34,24 +34,70 @@
                 </div>
                 <div class="tile is-vertical is-9">
                     <div class="tile">
+
                         <div class="tile is-parent">
-                            <article class="tile is-child notification is-info">
-                                <p class="title">Movie Result</p>
-                                <p class="subtitle">Image or Video with Full Details</p>
-                                <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/640x480.png">
-                                </figure>
+                            <!-- Movie Section-->
+                            <article class="tile is-parent notification is-info">
+                                <!-- Movie Poster -->
+                                <article class="tile is-child is-6" >
+                                    <figure class="image is-2by3">
+                                    <img id="poster_path" src="https://image.tmdb.org/t/p/w500/wxLUQ1pIms3HAlVGYvEG9zg2kDs.jpg">
+                                    </figure>
+                                </article>
+                                <!-- Movie Info -->
+                                <article class="m-4">
+                                    <p class="title" id="title">Jack Reacher</p>
+                                    <p class="subtitle" id="tagline">Justice is Coming.</p>
+                                    <p class="block" id="overview">Jack Reacher must uncover the truth behind a major government conspiracy in order to clear his name. On the run as a fugitive from the law, Reacher uncovers a potential secret from his past that could change his life forever.</p>
+                                    <span class="tag is-dark mb-1" id="vote_averag">Rating: 5.7</span>
+                                    <span class="tag is-dark mb-1" id="popularity">Popularity: 31</span>
+                                    <span class="tag is-dark mb-1" id="runtime">118 mins</span>
+                                    <span class="tag is-dark mb-1" id="genres">Action</span>
+                                </article>
                             </article>
                         </div>
+
                         <div class="tile is-parent is-vertical">
-                            <article class="tile is-child notification is-primary">
-                                <p class="title">Food Result</p>
-                                <p class="subtitle">Image with Summary</p>
+                           <!-- Food Section -->
+                            <article class="tile is-parent notification is-primary">
+                                 <!-- Food Image-->
+                                <article class="tile is-child is-4" >
+                                    <figure class="image is-1x1">
+                                        <img id="poster_path" src="https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg">
+                                    </figure>
+                                </article>
+                                <!-- Food Info-->
+                                <article class="m-4" >
+                                    <p class="title" id="strMeal">Teriyaki Chicken Casserole</p>
+                                    <p class="subtitle" id="strCategory">Chicken (<span id="strArea">Japanese</span>)</p>
+                                    <p class="mb-2" id="ingredients">Ingredients</p>
+                                    <span class="tag is-dark mb-1" id="strIngredient1">soy sauce</span>
+                                    <span class="tag is-dark mb-1" id="strIngredient2">water</span>
+                                    <span class="tag is-dark mb-1" id="strIngredient3">brown sugar</span>
+                                    <span class="tag is-dark mb-1" id="strIngredient4">ground ginger</span>
+                                    <span class="tag is-dark mb-1" id="strIngredient5">minced garlic</span>
+                                    <span class="tag is-dark mb-1" id="strIngredient6">cornstarch</span>
+                                    <span class="tag is-dark mb-1" id="strIngredient7">chicken breasts</span>
+                                    <span class="tag is-dark mb-1" id="strIngredient8">stir-fry vegetables</span>
+                                    <span class="tag is-dark mb-1" id="strIngredient9">brown rice</span>
+                                </article>
                             </article>
-                            <article class="tile is-child notification is-warning">
-                                <p class="title">Drink Result</p>
-                                <p class="subtitle">Image with Summary</p>
+
+                            <!-- Drink Section -->
+                            <article class="tile is-parent notification is-warning">
+                                 <!-- Drink Image-->
+                                <article class="tile is-child is-4" >
+                                    <figure class="image is-1x1">
+                                        <img id="poster_path" src="https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg">
+                                    </figure>
+                                </article>
+                                <!-- Drink Info-->
+                                <article class="m-4" >
+                                    <p class="title">Drink Result</p>
+                                    <p class="subtitle">Image with Summary</p>
+                                </article>
                             </article>
+
                         </div>
                     </div>
                     <div class="tile is-parent">
