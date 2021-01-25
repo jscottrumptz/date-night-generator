@@ -1,4 +1,8 @@
 
+
+// event handlers
+$("#meal-detail").css('cursor', 'pointer');
+
 $("#meal-detail").on("click", function(event){
     $("#modal").addClass("is-active");
 });
