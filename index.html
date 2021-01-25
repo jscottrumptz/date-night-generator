@@ -206,7 +206,7 @@
                         <!-- Food and Drink Tile Column -->
                         <div class="tile is-parent is-vertical">
                             <!-- Food Section -->
-                            <article class="tile is-parent notification is-primary">
+                            <article id="meal-detail" class="tile is-parent notification is-primary">
                                  <!-- Food Image-->
                                 <article class="tile is-child is-4" >
                                     <figure class="image is-1x1">
@@ -301,13 +301,13 @@
             </div>
         </section>
         <!-- Modal -->
-        <div class="modal"> <!-- use the "is-active" class to make visable-->
+        <div id="modal" class="modal"> <!-- use the "is-active" class to make visable-->
             <div class="modal-background"></div>
             <div class="modal-card">
                 <!-- Modal Header -->
                 <header class="modal-card-head">
                     <p id="strMeal" class="modal-card-title">Teriyaki Chicken Casserole</p>
-                    <button class="delete" aria-label="close"></button>
+                    <button id="modal-close" class="delete" aria-label="close"></button>
                 </header>
                 <!-- Modal Main -->
                 <section class="modal-card-body">
@@ -390,7 +390,6 @@
                 <!-- Modal Footer -->
                 <footer class="modal-card-foot">
                     <button class="button is-success">Print Recipe</button>
-                    <button class="button">Close</button>
                 </footer>
             </div>
         </div>
@@ -406,5 +405,9 @@
                 </p>
             </div>
         </footer>
+
+        <!-- javaScript links-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+        <script src="./assets/js/script.js"></script>
     </body>
 </html>
