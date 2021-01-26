@@ -27,8 +27,12 @@
                 <div class="tile is-parent">
                     <article class="tile is-child notification is-success">
                         <div class="content">
-                            <p class="title">Select Your Options</p>
-                            <p class="subtitle">for Movies / Meals / Drinks</p>
+                            <p class="title">Date Night Randomizer</p>
+                            <p class="subtitle">for Movies, Meals and Drinks</p>
+                            <p> Select any of the categories below and hit "Replace" to generate a random movie, meal, or drink selection. 
+                                Keep hitting "Replace" until you find a sugestion you like, then move on to another item. 
+                                After putting together a suitable trio, hit "Save Current Picks" to add them permanately to your Date Night Queue!
+                            </p>
                             <div class="content">
                                 <!-- Movie -->
                                 <div class="field">
@@ -65,29 +69,10 @@
                                           <button type="submit" class="button is-dark">Replace</button>
                                         </div>
                                     </div>
-                                    <label class="checkbox m-2">
-                                        <input type="checkbox">
-                                        Netflix
-                                    </label>
-                                    <label class="checkbox m-2">
-                                        <input type="checkbox">
-                                        Hulu
-                                    </label>
-                                    <label class="checkbox m-2">
-                                        <input type="checkbox">
-                                        Prime
-                                    </label>
-                                    <label class="checkbox m-2">
-                                        <input type="checkbox">
-                                        Disney+
-                                    </label>
-                                    <label class="checkbox m-2">
-                                        <input type="checkbox">
-                                        HBO Max
-                                    </label>
+                                    
                                 </div>
                                 <!-- Meal -->
-                                <div class="field mt-5">
+                                <div class="field mt-6">
                                     <label class="label">Meal</label>
                                     <div class="field has-addons">
                                         <div class="control is-expanded">
@@ -184,7 +169,7 @@
                         <!-- Movie Tile Column -->
                         <div class="tile is-parent">
                             <!-- Movie Section-->
-                            <article class="tile is-parent notification is-info">
+                            <article id="movie-detail" class="tile link is-parent notification is-info">
                                 <!-- Movie Poster -->
                                 <article class="tile is-child is-6" >
                                     <figure class="image is-2by3">
@@ -196,7 +181,7 @@
                                     <p class="title" id="title">Jack Reacher</p>
                                     <p class="subtitle" id="tagline">Justice is Coming.</p>
                                     <p class="block" id="overview">Jack Reacher must uncover the truth behind a major government conspiracy in order to clear his name. On the run as a fugitive from the law, Reacher uncovers a potential secret from his past that could change his life forever.</p>
-                                    <span class="tag is-dark mb-1" id="vote_averag">Rating: 5.7</span>
+                                    <span class="tag is-dark mb-1" id="vote_average">Rating: 5.7</span>
                                     <span class="tag is-dark mb-1" id="popularity">Popularity: 31%</span>
                                     <span class="tag is-dark mb-1" id="runtime">118 mins</span>
                                     <span class="tag is-dark mb-1" id="genres">Action</span>
@@ -206,7 +191,7 @@
                         <!-- Food and Drink Tile Column -->
                         <div class="tile is-parent is-vertical">
                             <!-- Food Section -->
-                            <article id="meal-detail" class="tile is-parent notification is-primary">
+                            <article id="meal-detail" class="tile link is-parent notification is-primary">
                                  <!-- Food Image-->
                                 <article class="tile is-child is-4" >
                                     <figure class="image is-1x1">
@@ -230,7 +215,7 @@
                                 </article>
                             </article>
                             <!-- Drink Section -->
-                            <article class="tile is-parent notification is-warning">
+                            <article id="drink-detail" class="tile link is-parent notification is-warning">
                                  <!-- Drink Image-->
                                 <article class="tile is-child is-4" >
                                     <figure class="image is-1x1">
@@ -254,43 +239,44 @@
                     <div class="tile is-parent">
                         <article class="tile is-child notification is-danger">
                             <p class="title">Date Night Queue</p>
-                            <p class="subtitle">Previously Saved Picks</p>
+                            <p class="subtitle">Click any of your previously saved sets below to repopulate the detail view above!</p>
                             <div class="tile">
                                 <!-- Saved Set -->
-                                <div class="card tile is-parent is-3 m-2" id="saved-set-1">
+                                <div class="card link tile is-parent is-3 mx-2 my-4" id="saved-set-1">
                                     <article class="tile is-child" >
-                                        <figure class="image is-2by3 my-2">
-                                            <img id="poster_path" src="https://www.themoviedb.org/t/p/w500/oXwpl4mdd8MYPkUMggREzSf9c5R.jpg">
-                                        </figure>
-                                        <button class="button is-dark is-small is-fullwidth is-rounded">
+                                        <button class=" my-3 button is-dark is-fullwidth is-rounded">
                                             Date Night - 1
                                         </button>
+                                        <figure class="image is-2by3 ">
+                                            <img id="35056" src="https://www.themoviedb.org/t/p/w500/oXwpl4mdd8MYPkUMggREzSf9c5R.jpg">
+                                        </figure>
+                                        
                                     </article>
                                     <div class="tile is-child is-vertical">
                                         <figure class="image is-1x1 m-2">
-                                            <img class="is-rounded" id="strMealThumb" src="https://www.themealdb.com/images/media/meals/o2wb6p1581005243.jpg">
+                                            <img class="is-rounded" id="52992" src="https://www.themealdb.com/images/media/meals/o2wb6p1581005243.jpg">
                                         </figure>
                                         <figure class="image is-1x1 m-2">
-                                            <img class="is-rounded" id="strDrinkThumb" src="https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg">
+                                            <img class="is-rounded" id="11001" src="https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg">
                                         </figure>
                                     </div>
                                 </div>
                                 <!-- Saved Set -->
-                                <div class="card tile is-parent is-3 m-2"  id="saved-set-2">
+                                <div class="card link tile is-parent is-3 mx-2 my-4"  id="saved-set-2">
                                     <article class="tile is-child" >
-                                        <figure class="image is-2by3 my-2">
-                                            <img id="poster_path" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/whF3YddFYSwJNuHEvi5lpsnty2l.jpg">
-                                        </figure>
-                                        <button class="button is-dark is-small is-fullwidth is-rounded">
+                                        <button class="button is-dark is-fullwidth is-rounded my-3">
                                             Date Night - 2
                                         </button>
+                                        <figure class="image is-2by3">
+                                            <img id="2493" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/whF3YddFYSwJNuHEvi5lpsnty2l.jpg">
+                                        </figure>
                                     </article>
                                     <div class="tile is-child is-vertical">
                                         <figure class="image is-1x1 m-2">
-                                            <img class="is-rounded" id="strMealThumb" src="https://www.themealdb.com/images/media/meals/xr0n4r1576788363.jpg">
+                                            <img class="is-rounded" id="52987" src="https://www.themealdb.com/images/media/meals/xr0n4r1576788363.jpg">
                                         </figure>
                                         <figure class="image is-1x1 m-2">
-                                            <img class="is-rounded" id="strDrinkThumb" src="https://www.thecocktaildb.com/images/media/drink/3pylqc1504370988.jpg">
+                                            <img class="is-rounded" id="11009" src="https://www.thecocktaildb.com/images/media/drink/3pylqc1504370988.jpg">
                                         </figure>
                                     </div>
                                 </div>
@@ -306,17 +292,17 @@
             <div class="modal-card">
                 <!-- Modal Header -->
                 <header class="modal-card-head">
-                    <p id="strMeal" class="modal-card-title">Teriyaki Chicken Casserole</p>
+                    <p id="modalTitle" class="modal-card-title">Teriyaki Chicken Casserole</p>
                     <button id="modal-close" class="delete" aria-label="close"></button>
                 </header>
                 <!-- Modal Main -->
                 <section class="modal-card-body">
                     <!-- PICTURE -->
                     <figure class="image is-square mb-2">
-                        <img id="strMealThumb" src="https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg">
+                        <img id="modalImage" src="https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg">
                     </figure>
                     <!-- INGREDIANTS -->
-                    <div class="field is-grouped is-grouped-multiline">
+                    <div id="modalDetails" class="field is-grouped is-grouped-multiline">
                         <div class="control">
                             <div class="tags has-addons">
                                 <span id="strMeasure1" class="tag is-link">3/4 cup</span>
@@ -374,7 +360,7 @@
                     </div>
                     <!-- INSTRUCTIONS -->
                     <div class="notification"> <!-- \r\n should maybe with  </br></br> -->
-                        <p id="strInstructions">Preheat oven to 350° F. Spray a 9x13-inch baking pan with non-stick spray.</br></br>
+                        <p id="modalText">Preheat oven to 350° F. Spray a 9x13-inch baking pan with non-stick spray.</br></br>
                             Combine soy sauce, ½ cup water, brown sugar, ginger and garlic in a small saucepan and cover. Bring to a boil over medium heat. Remove lid and cook for one minute once boiling.</br></br>
                             Meanwhile, stir together the corn starch and 2 tablespoons of water in a separate dish until smooth. Once sauce is boiling, add mixture to the saucepan and stir to combine. Cook until the sauce starts to thicken then remove from heat.</br></br>
                             Place the chicken breasts in the prepared pan. Pour one cup of the sauce over top of chicken. Place chicken in oven and bake 35 minutes or until cooked through. Remove from oven and shred chicken in the dish using two forks.</br></br>
@@ -384,7 +370,7 @@
                     </div>
                     <!-- VIDEO -->
                     <figure class="image is-16by9">
-                        <iframe id="strYoutube" class="has-ratio" width="640" height="360" src="https://www.youtube.com/embed/4aZr5hZXP_s" frameborder="0" allowfullscreen></iframe>
+                        <iframe id="modalVideo" class="has-ratio" width="640" height="360" src="https://www.youtube.com/embed/4aZr5hZXP_s" frameborder="0" allowfullscreen></iframe>
                     </figure>
                 </section>
                 <!-- Modal Footer -->
