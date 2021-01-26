@@ -33,47 +33,78 @@ let savedDateNights = [
 // functions //
 //           //
 
-// get a random movie by genre
+// fetch movie data from api
+let getMovieData = function (id)
+{
+    // make and api call to get the movie data using the movie id
+};
+
+// fetch meal data from api
+let getMealData = function (id)
+{
+    // make and api call to get the meal data using the meal id
+};
+
+// fetch drink data from api
+let getDrinkData = function (id)
+{
+    // make and api call to get the drink data using the drink id
+};
+
+// get a random movie id by genre
 let getRandomMovie = function () {
     let genre = $("#movie-genre").val() || [];
     console.log (genre);
+
+    // make a search call to the api to get a list of movies
+
+    // select a random movie from the list
+
+    // return the movie id
+
 };
 
-// get a random meal by type
+// get a random meal id by type
 let getRandomMealByType = function() {
     let type = $("#meal-type").val() || [];
     console.log (type);
+    
+    // make a search call to the api to get a list of meals
+
+    // select a random meal from the list
+
+    // return the meal id
+
 };
 
-// get a random meal by country
+// get a random meal id by country
 let getRandomMealByCountry = function() {
     let country = $("#meal-country").val() || [];
     console.log (country);
+        
+    // make a search call to the api to get a list of meals
+
+    // select a random meal from the list
+
+    // return the meal id
+
 };
 
-// get a random drink by type
+// get a random drink id by type
 let getRandomDrink = function() {
     let type = $("#drink-type").val() || [];
     console.log (type);
+        
+    // make a search call to the api to get a list of drinks
+
+    // select a random drink from the list
+
+    // return the drink id
+
 }
 
-// replace the featured movie
-let replaceFeaturedMovie = function() {
-    
-};
-
-// replace the featured meal
-let replaceFeaturedMeal = function() {
-    
-};
-
-// replace the featured drink
-let replaceFeaturedDrink = function() {
-    
-};
-
 // populate featured Movie
-let populateFeaturedMovie = function() {
+let populateFeaturedMovie = function(movieData) {
 
     // call the API using the global featuredMovie variable
 
@@ -91,7 +122,7 @@ let populateFeaturedMovie = function() {
 };
 
 // populate featured Meal
-let populateFeaturedMeal = function() {
+let populateFeaturedMeal = function(mealData) {
 
     // call the API using the global featuredMeal variable
 
@@ -106,7 +137,7 @@ let populateFeaturedMeal = function() {
 };
 
 // populate featured Drink
-let populateFeaturedDrink = function() {
+let populateFeaturedDrink = function(drinkData) {
 
     // call the API using the global featuredDrink variable
 
@@ -121,7 +152,7 @@ let populateFeaturedDrink = function() {
 };
 
 // populate the modal with movie details
-let movieDetail = function() {
+let movieDetail = function(movieData) {
     // make modal visable
     $("#modal").addClass("is-active");
 
@@ -139,7 +170,7 @@ let movieDetail = function() {
 };
 
 // populate the modal with meal details
-let mealDetail = function() {
+let mealDetail = function(mealData) {
     // make modal visable
     $("#modal").addClass("is-active");
 
@@ -157,7 +188,7 @@ let mealDetail = function() {
 };
 
 // populate the modal with drink details
-let drinkDetail = function() {
+let drinkDetail = function(drinkData) {
     // make modal visable
     $("#modal").addClass("is-active");
 
