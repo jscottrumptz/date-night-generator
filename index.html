@@ -40,7 +40,7 @@
                                     <div class="field has-addons">
                                         <div class="control is-expanded">
                                             <div class="select is-fullwidth">
-                                                <select name="movie">
+                                                <select id="movie-genre" name="movie-genre">
                                                     <option disabled>Random by Genre</option>
                                                     <option value="Any">- Any -</option>
                                                     <option value="28">Action</option>
@@ -66,7 +66,7 @@
                                             </div>
                                         </div>
                                         <div class="control">
-                                          <button type="submit" class="button is-dark">Replace</button>
+                                          <button id="movie-genre-submit" type="submit" class="button is-dark">Replace</button>
                                         </div>
                                     </div>
                                     
@@ -77,7 +77,7 @@
                                     <div class="field has-addons">
                                         <div class="control is-expanded">
                                             <div class="select is-fullwidth">
-                                                <select name="meal-type">
+                                                <select id="meal-type" name="meal-type">
                                                     <option disabled>Random by Type</option>
                                                     <option value="Any">- Any -</option>
                                                     <option value="Beef">Beef</option>
@@ -96,7 +96,7 @@
                                             </div>
                                         </div>
                                         <div class="control">
-                                          <button type="submit" class="button is-dark">Replace</button>
+                                          <button id="meal-type-submit" type="submit" class="button is-dark">Replace</button>
                                         </div>
                                     </div>
 
@@ -105,27 +105,27 @@
                                     <div class="field has-addons">
                                         <div class="control is-expanded">
                                             <div class="select is-fullwidth">
-                                                <select name="meal-country">
+                                                <select id="meal-country" name="meal-country">
                                                     <option disabled>Random by Country</option>
-                                                    <option value="">- Any -</option>
-                                                    <option value="">American</option>
-                                                    <option value="">British</option>
-                                                    <option value="">Canadian</option>
-                                                    <option value="">Chinese</option>
-                                                    <option value="">Dutch</option>
-                                                    <option value="">Egyptian</option>
-                                                    <option value="">French</option>
-                                                    <option value="">Greek</option>
-                                                    <option value="">Indian</option>
-                                                    <option value="">Irish</option>
-                                                    <option value="">Italian</option>
-                                                    <option value="">Jamaican</option>
-                                                    <option value="">Japanese</option>
+                                                    <option value="- Any -">- Any -</option>
+                                                    <option value="American">American</option>
+                                                    <option value="British">British</option>
+                                                    <option value="Canadian">Canadian</option>
+                                                    <option value="Chinese">Chinese</option>
+                                                    <option value="Dutch">Dutch</option>
+                                                    <option value="Egyptian">Egyptian</option>
+                                                    <option value="French">French</option>
+                                                    <option value="Greek">Greek</option>
+                                                    <option value="Indian">Indian</option>
+                                                    <option value="Irish">Irish</option>
+                                                    <option value="Italian">Italian</option>
+                                                    <option value="Jamaican">Jamaican</option>
+                                                    <option value="Japanese">Japanese</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="control">
-                                          <button type="submit" class="button is-dark">Replace</button>
+                                          <button id="meal-country-submit" type="submit" class="button is-dark">Replace</button>
                                         </div>
                                     </div>
                                 </div>
@@ -135,25 +135,25 @@
                                     <div class="field has-addons">
                                         <div class="control is-expanded">
                                             <div class="select is-fullwidth">
-                                                <select name="drink-type">
+                                                <select id="drink-type" name="drink-type">
                                                     <option disabled>Random by Type</option>
-                                                    <option value="">- Any -</option>
-                                                    <option value="">Ordinary Drink</option>
-                                                    <option value="">Cocktail</option>
-                                                    <option value="">Milk / Float / Shake</option>
-                                                    <option value="">Other/Unknown</option>
-                                                    <option value="">Cocoa</option>
-                                                    <option value="">Shot</option>
-                                                    <option value="">Coffee / Tea</option>
-                                                    <option value="">Homemade Liqueur</option>
-                                                    <option value="">Punch / Party Drink</option>
-                                                    <option value="">Beer</option>
-                                                    <option value="">Soft Drink / Soda</option>
+                                                    <option value="- Any -">- Any -</option>
+                                                    <option value="Ordinary Drink">Ordinary Drink</option>
+                                                    <option value="Cocktail">Cocktail</option>
+                                                    <option value="Milk / Float / Shake">Milk / Float / Shake</option>
+                                                    <option value="Other/Unknown">Other/Unknown</option>
+                                                    <option value="Cocoa">Cocoa</option>
+                                                    <option value="Shot">Shot</option>
+                                                    <option value="Coffee / Tea">Coffee / Tea</option>
+                                                    <option value="Homemade Liqueur">Homemade Liqueur</option>
+                                                    <option value="Punch / Party Drink">Punch / Party Drink</option>
+                                                    <option value="Beer">Beer</option>
+                                                    <option value="Soft Drink / Soda">Soft Drink / Soda</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="control">
-                                          <button type="submit" class="button is-dark">Replace</button>
+                                          <button id="drink-type-submit" type="submit" class="button is-dark">Replace</button>
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@
                         <!-- Movie Tile Column -->
                         <div class="tile is-parent">
                             <!-- Movie Section-->
-                            <article id="movie-detail" class="tile link is-parent notification is-info">
+                            <article id="featured-movie" class="tile link is-parent notification is-info">
                                 <!-- Movie Poster -->
                                 <article class="tile is-child is-6" >
                                     <figure class="image is-2by3">
@@ -191,7 +191,7 @@
                         <!-- Food and Drink Tile Column -->
                         <div class="tile is-parent is-vertical">
                             <!-- Food Section -->
-                            <article id="meal-detail" class="tile link is-parent notification is-primary">
+                            <article id="featured-meal" class="tile link is-parent notification is-primary">
                                  <!-- Food Image-->
                                 <article class="tile is-child is-4" >
                                     <figure class="image is-1x1">
@@ -215,7 +215,7 @@
                                 </article>
                             </article>
                             <!-- Drink Section -->
-                            <article id="drink-detail" class="tile link is-parent notification is-warning">
+                            <article id="featured-drink" class="tile link is-parent notification is-warning">
                                  <!-- Drink Image-->
                                 <article class="tile is-child is-4" >
                                     <figure class="image is-1x1">

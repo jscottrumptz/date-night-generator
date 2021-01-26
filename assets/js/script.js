@@ -2,10 +2,10 @@
 // global variables //
 //                  //
 
-// strings that hold the currently selected items
-let mainMovie = "343611";
-let mainMeal = "52772";
-let mainDrink = "11007";
+// strings that hold the currently featured item ids
+let featuredMovie = "343611";
+let featuredMeal = "52772";
+let featuredDrink = "11007";
 
 // array that holds the previously saved date nights
 let savedDateNights = [
@@ -33,28 +33,99 @@ let savedDateNights = [
 // functions //
 //           //
 
-// populate main Movie
-let popMovieMain = function() {
+// get a random movie by genre
+let getRandomMovie = function () {
+    let genre = $("#movie-genre").val() || [];
+    console.log (genre);
+};
+
+// get a random meal by type
+let getRandomMealByType = function() {
+    let type = $("#meal-type").val() || [];
+    console.log (type);
+};
+
+// get a random meal by country
+let getRandomMealByCountry = function() {
+    let country = $("#meal-country").val() || [];
+    console.log (country);
+};
+
+// get a random drink by type
+let getRandomDrink = function() {
+    let type = $("#drink-type").val() || [];
+    console.log (type);
+}
+
+// replace the featured movie
+let replaceFeaturedMovie = function() {
+    
+};
+
+// replace the featured meal
+let replaceFeaturedMeal = function() {
+    
+};
+
+// replace the featured drink
+let replaceFeaturedDrink = function() {
+    
+};
+
+// populate featured Movie
+let populateFeaturedMovie = function() {
+
+    // call the API using the global featuredMovie variable
+
+    // populate the #title with the .title
+
+    // populate the #tagline with .tagline
+
+    // populate the #poster_path with the .poster_path
+
+    // populate the #vote_average && #runtime with the .vote_average && .runtime && .popularity && .genres 
+
+    // populate the #overview with the .overview
+
+    // populate available streaming services
+};
+
+// populate featured Meal
+let populateFeaturedMeal = function() {
+
+    // call the API using the global featuredMeal variable
+
+    // populate the #strMealThumb with the .strMealThumb
+
+    // populate the #strMeal with the .strMeal
+
+    // populate the #strCategory with the .strCategory
+
+    // populate the #ingrediants with an .strIngredient[i] for loop
 
 };
 
-// populate main Meal
-let popMealMain = function() {
+// populate featured Drink
+let populateFeaturedDrink = function() {
+
+    // call the API using the global featuredDrink variable
+
+    // populate the #strDrinkThumb with the .strDrinkThumb
+
+    // populate the #strDrink with the .strDrink
+
+    // populate the #strIBA with the .strIBA
+
+    // populate the #ingrediants with an .strIngredient[i] for loop
 
 };
-
-// populate main Drink
-let popDrinkMain = function() {
-
-};
-
 
 // populate the modal with movie details
 let movieDetail = function() {
     // make modal visable
     $("#modal").addClass("is-active");
 
-    // call the API using the global mainMovie variable
+    // call the API using the global featuredMovie variable
 
     // populate the #modalTitle with the .title
 
@@ -72,7 +143,7 @@ let mealDetail = function() {
     // make modal visable
     $("#modal").addClass("is-active");
 
-    // call the API using the global mainMeal variable
+    // call the API using the global featuredMeal variable
 
     // populate the #modalTitle with the .strMeal
 
@@ -90,7 +161,7 @@ let drinkDetail = function() {
     // make modal visable
     $("#modal").addClass("is-active");
 
-    // call the API using the global mainDrink variable
+    // call the API using the global featuredDrink variable
 
     // populate the #modalTitle with the .strDrink
 
@@ -103,6 +174,21 @@ let drinkDetail = function() {
     // populate the #modalVideo with the .strVideo (if available)
 };
 
+// save the current featured values as a date night
+let saveCurrentPicks = function() {
+
+};
+
+// save the date nights to local storage
+let saveDateNights = function() {
+
+};
+
+// load the date nights from local storage
+let loadDateNights = function() {
+
+};
+
 //                //
 // event handlers //
 //                //
@@ -111,15 +197,27 @@ let drinkDetail = function() {
 $(".link").css('cursor', 'pointer');
 
 // movie detail click event
-$("#movie-detail").on("click", movieDetail);
+$("#featured-movie").on("click", movieDetail);
 
 // meal detail click event
-$("#meal-detail").on("click", mealDetail);
+$("#featured-meal").on("click", mealDetail);
 
 // drink detail click event
-$("#drink-detail").on("click", drinkDetail);
+$("#featured-drink").on("click", drinkDetail);
 
 // close modal click event
 $("#modal-close").on("click", function(event){
     $("#modal").removeClass("is-active");
 });
+
+// replace movie click event
+$("#movie-genre-submit").on("click", getRandomMovie);
+
+// replace meal type click event
+$("#meal-type-submit").on("click", getRandomMealByType);
+
+// replace meal country click event
+$("#meal-country-submit").on("click", getRandomMealByCountry);
+
+// replace drink click event
+$("#drink-type-submit").on("click", getRandomDrink);
