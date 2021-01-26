@@ -159,7 +159,7 @@ let getRandomDrink = function() {
 // populate featured Movie
 let populateFeaturedMovie = function(id) {
 
-    console.log(id);
+    console.log("Movie id is " + id);
 
     // format themoviedb.org api url
     let apiUrl = "https://api.themoviedb.org/3/movie/" + id + "?api_key=0a6cff8e56d74eb3ed1b51e6620176c1"
@@ -181,14 +181,19 @@ let populateFeaturedMovie = function(id) {
                                     </figure>
                                 </article>
                                 <!-- Movie Info -->
-                                <article class="m-4">
+                                <article id="movie-info" class="m-4">
                                     <p class="title" id="title">` + data.title + `</p>
                                     <p class="subtitle" id="tagline">` + data.tagline + `</p>
                                     <p class="block" id="overview">` + data.overview + `</p>
                                     <span class="tag is-dark mb-1" id="vote_average">Average Rating: ` + data.vote_average + `</span>
-                                    <span class="tag is-dark mb-1" id="runtime">Runtime: ` + data.runtime + `</span>
+                                    <span class="tag is-dark mb-2" id="runtime">Runtime: ` + data.runtime + ` mins</span></br>
                                 </article>
                     `);
+
+                    // make a new tag for each item in the movie's genre array
+                    data.genres.forEach(genre => $("#movie-info").append(`<span class="tag is-link mb-1 mx-1" id="` + genre.name + `">` + genre.name + `</span>`));
+
+                    $("#movie-info").append(`</br><a href="https://www.imdb.com/title/` + data.imdb_id + `/" target="_blank" class="button is-rounded is-warning mt-2">View on IMDB</a>`);
                     
                 });
             // request fails
@@ -336,7 +341,7 @@ getRandomMovie();
 $(".link").css('cursor', 'pointer');
 
 // movie detail click event
-$("#featured-movie").on("click", movieDetail);
+// $("#featured-movie").on("click", movieDetail);
 
 // meal detail click event
 $("#featured-meal").on("click", mealDetail);
