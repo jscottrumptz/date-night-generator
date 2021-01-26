@@ -36,7 +36,31 @@ let savedDateNights = [
 // fetch movie data from api
 let getMovieData = function (id)
 {
-    // make and api call to get the movie data using the movie id
+    // format themoviedb.org api url
+    let apiUrl = "https://api.themoviedb.org/3/movie/" + id + "?api_key=0a6cff8e56d74eb3ed1b51e6620176c1"
+
+    // make a request to the url
+    fetch(apiUrl)
+        .then(function(response) {
+        // if request was successful 
+            if (response.ok) {
+                response.json().then(function(data) {
+                    populateFeaturedMovie(data);
+                    // return data;
+                });
+            // request fails
+            } else {
+                $("#modal").addClass("is-active");
+                $("#modalTitle").text("Error: Unable to complete request");
+                $("#modalMain").empty().append(`<p>` + response.statusText + `</p>`);
+                // alert("Error: " + response.statusText);
+            }
+        })  
+        // alert user if there is no responce from themoviedb.org
+        .catch(function(error) {
+            $("#modalTitle").text("Unable to connect to themoviedb.org");
+            $("#modalMain").empty().append(`<p> Please check your connection </p>`);
+        })
 };
 
 // fetch meal data from api
@@ -53,14 +77,43 @@ let getDrinkData = function (id)
 
 // get a random movie id by genre
 let getRandomMovie = function () {
+    // get user genre selection
     let genre = $("#movie-genre").val() || [];
-    console.log (genre);
+    console.log ("Selected genre id is " + genre);
 
-    // make a search call to the api to get a list of movies
+    // set a random value for one of the first 5 pages of results
+    let random = Math.floor(Math.random() * 5) + 1;
 
-    // select a random movie from the list
+    // format themoviedb.org api url to select by genre randomly from the 100 most popular results
+    let apiUrl = "https://api.themoviedb.org/3/discover/movie?api_key=0a6cff8e56d74eb3ed1b51e6620176c1&language=en-US&include_adult=false&include_video=false&with_genres=" + genre + "&with_original_language=en&page=" + random;
 
-    // return the movie id
+    // make a request to the url
+    fetch(apiUrl)
+        .then(function(response) {
+        // if request was successful 
+            if (response.ok) {
+                response.json().then(function(data) {
+                    // populateFeaturedMovie(data);
+                    let randomMovie = Math.floor(Math.random() * data.results.length);
+
+                    // select a random movie from the returned list
+                    featuredMovie = (data.results[randomMovie].id);
+
+                    populateFeaturedMovie(featuredMovie);
+                });
+            // request fails
+            } else {
+                $("#modal").addClass("is-active");
+                $("#modalTitle").text("Error: Unable to complete request");
+                $("#modalMain").empty().append(`<p>` + response.statusText + `</p>`);
+                // alert("Error: " + response.statusText);
+            }
+        })  
+        // alert user if there is no responce from themoviedb.org
+        .catch(function(error) {
+            $("#modalTitle").text("Unable to connect to themoviedb.org");
+            $("#modalMain").empty().append(`<p> Please check your connection </p>`);
+        })
 
 };
 
@@ -104,10 +157,62 @@ let getRandomDrink = function() {
 }
 
 // populate featured Movie
-let populateFeaturedMovie = function(movieData) {
+let populateFeaturedMovie = function(id) {
 
-    // call the API using the global featuredMovie variable
+    console.log(id);
 
+    // format themoviedb.org api url
+    let apiUrl = "https://api.themoviedb.org/3/movie/" + id + "?api_key=0a6cff8e56d74eb3ed1b51e6620176c1"
+
+    // make a request to the url
+    fetch(apiUrl)
+        .then(function(response) {
+        // if request was successful 
+            if (response.ok) {
+                response.json().then(function(data) {
+                    console.log(data);
+                    
+                    // generate HTML to populate the featured movie section
+                    $("#featured-movie").empty().append(`
+                    <!-- Movie Poster -->
+                                <article class="tile is-child is-6" >
+                                    <figure class="image is-2by3">
+                                    <img id="poster_path" src="https://image.tmdb.org/t/p/w500` + data.poster_path +`">
+                                    </figure>
+                                </article>
+                                <!-- Movie Info -->
+                                <article class="m-4">
+                                    <p class="title" id="title">` + data.title + `</p>
+                                    <p class="subtitle" id="tagline">` + data.tagline + `</p>
+                                    <p class="block" id="overview">` + data.overview + `</p>
+                                    <span class="tag is-dark mb-1" id="vote_average">Average Rating: ` + data.vote_average + `</span>
+                                    <span class="tag is-dark mb-1" id="runtime">Runtime: ` + data.runtime + `</span>
+                                </article>
+                    `);
+                    
+                });
+            // request fails
+            } else {
+                $("#modal").addClass("is-active");
+                $("#modalTitle").text("Error: Unable to complete request");
+                $("#modalMain").empty().append(`<p>` + response.statusText + `</p>`);
+                // alert("Error: " + response.statusText);
+            }
+        })  
+        // alert user if there is no responce from themoviedb.org
+        .catch(function(error) {
+            $("#modalTitle").text("Unable to connect to themoviedb.org");
+            $("#modalMain").empty().append(`<p> Please check your connection </p>`);
+        })
+
+    // let random = Math.floor(Math.random() * movieData.results.length);
+
+    // select a random movie from the returned list
+    // featuredMovie = (movieData.results[random].id);
+
+    // console.log(featuredMovie)
+
+    
     // populate the #title with the .title
 
     // populate the #tagline with .tagline
@@ -219,6 +324,9 @@ let saveDateNights = function() {
 let loadDateNights = function() {
 
 };
+
+
+getRandomMovie();
 
 //                //
 // event handlers //

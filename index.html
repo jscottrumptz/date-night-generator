@@ -42,7 +42,7 @@
                                             <div class="select is-fullwidth">
                                                 <select id="movie-genre" name="movie-genre">
                                                     <option disabled>Random by Genre</option>
-                                                    <option value="Any">- Any -</option>
+                                                    <option value="">- Any -</option>
                                                     <option value="28">Action</option>
                                                     <option value="12">Adventure</option>
                                                     <option value="16">Animation</option>
@@ -170,22 +170,7 @@
                         <div class="tile is-parent">
                             <!-- Movie Section-->
                             <article id="featured-movie" class="tile link is-parent notification is-info">
-                                <!-- Movie Poster -->
-                                <article class="tile is-child is-6" >
-                                    <figure class="image is-2by3">
-                                    <img id="poster_path" src="https://image.tmdb.org/t/p/w500/wxLUQ1pIms3HAlVGYvEG9zg2kDs.jpg">
-                                    </figure>
-                                </article>
-                                <!-- Movie Info -->
-                                <article class="m-4">
-                                    <p class="title" id="title">Jack Reacher</p>
-                                    <p class="subtitle" id="tagline">Justice is Coming.</p>
-                                    <p class="block" id="overview">Jack Reacher must uncover the truth behind a major government conspiracy in order to clear his name. On the run as a fugitive from the law, Reacher uncovers a potential secret from his past that could change his life forever.</p>
-                                    <span class="tag is-dark mb-1" id="vote_average">Rating: 5.7</span>
-                                    <span class="tag is-dark mb-1" id="popularity">Popularity: 31%</span>
-                                    <span class="tag is-dark mb-1" id="runtime">118 mins</span>
-                                    <span class="tag is-dark mb-1" id="genres">Action</span>
-                                </article>
+                                
                             </article>
                         </div>
                         <!-- Food and Drink Tile Column -->
@@ -295,7 +280,7 @@
                     <button id="modal-close" class="delete" aria-label="close"></button>
                 </header>
                 <!-- Modal Main -->
-                <section class="modal-card-body">
+                <section id="modalMain" class="modal-card-body">
                     <!-- PICTURE -->
                     <figure class="image is-square mb-2">
                         <img id="modalImage" src="https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg">
@@ -367,15 +352,15 @@
                             Add the cooked vegetables and rice to the casserole dish with the chicken. Add most of the remaining sauce, reserving a bit to drizzle over the top when serving. Gently toss everything together in the casserole dish until combined. Return to oven and cook 15 minutes. Remove from oven and let stand 5 minutes before serving. Drizzle each serving with remaining sauce. Enjoy!
                         </p>
                     </div>
-                    <!-- VIDEO -->
+                    <!-- VIDEO
                     <figure class="image is-16by9">
                         <iframe id="modalVideo" class="has-ratio" width="640" height="360" src="https://www.youtube.com/embed/4aZr5hZXP_s" frameborder="0" allowfullscreen></iframe>
-                    </figure>
+                    </figure> -->
                 </section>
-                <!-- Modal Footer -->
+                <!-- Modal Footer
                 <footer class="modal-card-foot">
                     <button class="button is-success">Print Recipe</button>
-                </footer>
+                </footer>  -->
             </div>
         </div>
         <!-- Footer -->
