@@ -346,7 +346,6 @@ let populateFeaturedMeal = function(id) {
             $("#modalTitle").text("Unable to connect to themealdb.com");
             $("#modalMain").empty().append(`<p> Please check your connection </p>`);
         })
-
 };
 
 // populate featured Drink
@@ -427,38 +426,136 @@ let movieDetail = function(id) {
 
 // populate the modal with meal details
 let mealDetail = function(id) {
-    // make modal visable
-    $("#modal").addClass("is-active");
 
-    // call the API using the global featuredMeal variable
+    // format themealdb.com api url using the global featuredMeal variable
+    let apiUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + featuredMeal;
 
-    // populate the #modalTitle with the .strMeal
+    // make a request to the url
+    fetch(apiUrl)
+        .then(function(response) {
+        // if request was successful 
+            if (response.ok) {
+                response.json().then(function(data) {
+                    
+                    // make modal visable
+                    $("#modal").addClass("is-active");
 
-    // populate the #modalImage with the .strMealThumb
+                    // generate HTML to populate the featured meal section
+                    $("#modalTitle").text(data.meals[0].strMeal);
+                    $("#modalMain").empty().append(`
+                    <!-- PICTURE -->
+                    <figure class="image is-square mb-2">
+                        <img id="modalImage" src="` + data.meals[0].strMealThumb + `">
+                    </figure>
+                    <!-- INGREDIANTS -->
+                    <div id="modalDetails" class="field is-grouped is-grouped-multiline">
+                    </div>
+                    <!-- INSTRUCTIONS -->
+                    <div class="notification">
+                        <p id="modalText">` + data.meals[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
+                    </div>
+                    <!-- VIDEO -->
+                    <figure class="image is-16by9">
+                        <iframe id="modalVideo" class="has-ratio" width="640" height="360" src="https://www.youtube.com/embed/` + data.meals[0].strYoutube.substring(32) + `" frameborder="0" allowfullscreen></iframe>
+                    </figure>
+                    `);
 
-    // populate the #modalDetails with an .strIngredient[i] && .strMeasure[i] for loop
-
-    // populate the #modalText with the .strInstructions
-
-    // populate the #modalVideo with the .strYoutube (if available)
+                    // make a new tag for each ingredient in the meal
+                    for(i = 1; i < 21; i++){
+                        // make a string value to pass along the number for the array selector
+                        let ingredient = "strIngredient" + i;
+                        let measurement = "strMeasure" + i;
+                        // make sure the selector isn't empty
+                        if( data.meals[0][ingredient] != "" && data.meals[0][ingredient] != null ) {
+                            // list the ingredient as a tag in the modalDetails div
+                            $("#modalDetails").append(`
+                            <div class="control">
+                                <div class="tags has-addons">
+                                    <span class="tag is-link">` + data.meals[0][measurement] + `</span>
+                                    <span class="tag is-dark">` + data.meals[0][ingredient] + `</span>
+                                </div>
+                            </div>
+                            `);
+                        }
+                    }
+                });
+            // request fails
+            } else {
+                $("#modal").addClass("is-active");
+                $("#modalTitle").text("Error: Unable to complete request");
+                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+            }
+        })  
+        // alert user if there is no responce from themealdb.com
+        .catch(function(error) {
+            $("#modalTitle").text("Unable to connect to themealdb.com");
+            $("#modalMain").empty().append(`<p> Please check your connection </p>`);
+        })
 };
 
 // populate the modal with drink details
 let drinkDetail = function(id) {
-    // make modal visable
-    $("#modal").addClass("is-active");
+    
+    // format thecocktaildb.com api url using the global featuredDrink variable
+    let apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + featuredDrink;
 
-    // call the API using the global featuredDrink variable
+    // make a request to the url
+    fetch(apiUrl)
+        .then(function(response) {
+        // if request was successful 
+            if (response.ok) {
+                response.json().then(function(data) {
 
-    // populate the #modalTitle with the .strDrink
+                    // make modal visable
+                    $("#modal").addClass("is-active");
+                    
+                    // generate HTML to populate the featured meal section
+                    $("#modalTitle").text(data.drinks[0].strDrink);
+                    $("#modalMain").empty().append(`
+                    <!-- PICTURE -->
+                    <figure class="image is-square mb-2">
+                        <img id="modalImage" src="` + data.drinks[0].strDrinkThumb + `">
+                    </figure>
+                    <!-- INGREDIANTS -->
+                    <div id="modalDetails" class="field is-grouped is-grouped-multiline">
+                    </div>
+                    <!-- INSTRUCTIONS -->
+                    <div class="notification">
+                        <p id="modalText">` + data.drinks[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
+                    </div>
+                    `);
 
-    // populate the #modalImage with the .strDrinkThumb
-
-    // populate the #modalDetails with an .strIngredient[i] && .strMeasure[i] for loop
-
-    // populate the #modalText with the .strInstructions
-
-    // populate the #modalVideo with the .strVideo (if available)
+                    // make a new tag for each ingredient in the drink
+                    for(i = 1; i < 21; i++){
+                        // make a string value to pass along the number for the array selector
+                        let ingredient = "strIngredient" + i;
+                        let measurement = "strMeasure" + i;
+                        // make sure the selector isn't empty
+                        if( data.drinks[0][ingredient] != "" && data.drinks[0][ingredient] != null ) {
+                            // list the ingredient as a tag in the modalDetails div
+                            $("#modalDetails").append(`
+                            <div class="control">
+                                <div class="tags has-addons">
+                                    <span class="tag is-link">` + data.drinks[0][measurement] + `</span>
+                                    <span class="tag is-dark">` + data.drinks[0][ingredient] + `</span>
+                                </div>
+                            </div>
+                            `);
+                        }
+                    }
+                });
+            // request fails
+            } else {
+                $("#modal").addClass("is-active");
+                $("#modalTitle").text("Error: Unable to complete request");
+                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+            }
+        })  
+        // alert user if there is no responce from thecocktaildb.com
+        .catch(function(error) {
+            $("#modalTitle").text("Unable to connect to thecocktaildb.com");
+            $("#modalMain").empty().append(`<p> Please check your connection </p>`);
+        })
 };
 
 // save the current featured values as a date night
