@@ -40,9 +40,9 @@
                                     <div class="field has-addons">
                                         <div class="control is-expanded">
                                             <div class="select is-fullwidth">
-                                                <select name="movie">
+                                                <select id="movie-genre" name="movie-genre">
                                                     <option disabled>Random by Genre</option>
-                                                    <option value="Any">- Any -</option>
+                                                    <option value="">- Any -</option>
                                                     <option value="28">Action</option>
                                                     <option value="12">Adventure</option>
                                                     <option value="16">Animation</option>
@@ -66,7 +66,7 @@
                                             </div>
                                         </div>
                                         <div class="control">
-                                          <button type="submit" class="button is-dark">Replace</button>
+                                          <button id="movie-genre-submit" type="submit" class="button is-dark">Replace</button>
                                         </div>
                                     </div>
                                     
@@ -77,7 +77,7 @@
                                     <div class="field has-addons">
                                         <div class="control is-expanded">
                                             <div class="select is-fullwidth">
-                                                <select name="meal-type">
+                                                <select id="meal-type" name="meal-type">
                                                     <option disabled>Random by Type</option>
                                                     <option value="Any">- Any -</option>
                                                     <option value="Beef">Beef</option>
@@ -96,7 +96,7 @@
                                             </div>
                                         </div>
                                         <div class="control">
-                                          <button type="submit" class="button is-dark">Replace</button>
+                                          <button id="meal-type-submit" type="submit" class="button is-dark">Replace</button>
                                         </div>
                                     </div>
 
@@ -105,27 +105,27 @@
                                     <div class="field has-addons">
                                         <div class="control is-expanded">
                                             <div class="select is-fullwidth">
-                                                <select name="meal-country">
+                                                <select id="meal-country" name="meal-country">
                                                     <option disabled>Random by Country</option>
-                                                    <option value="">- Any -</option>
-                                                    <option value="">American</option>
-                                                    <option value="">British</option>
-                                                    <option value="">Canadian</option>
-                                                    <option value="">Chinese</option>
-                                                    <option value="">Dutch</option>
-                                                    <option value="">Egyptian</option>
-                                                    <option value="">French</option>
-                                                    <option value="">Greek</option>
-                                                    <option value="">Indian</option>
-                                                    <option value="">Irish</option>
-                                                    <option value="">Italian</option>
-                                                    <option value="">Jamaican</option>
-                                                    <option value="">Japanese</option>
+                                                    <option value="Any">- Any -</option>
+                                                    <option value="American">American</option>
+                                                    <option value="British">British</option>
+                                                    <option value="Canadian">Canadian</option>
+                                                    <option value="Chinese">Chinese</option>
+                                                    <option value="Dutch">Dutch</option>
+                                                    <option value="Egyptian">Egyptian</option>
+                                                    <option value="French">French</option>
+                                                    <option value="Greek">Greek</option>
+                                                    <option value="Indian">Indian</option>
+                                                    <option value="Irish">Irish</option>
+                                                    <option value="Italian">Italian</option>
+                                                    <option value="Jamaican">Jamaican</option>
+                                                    <option value="Japanese">Japanese</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="control">
-                                          <button type="submit" class="button is-dark">Replace</button>
+                                          <button id="meal-country-submit" type="submit" class="button is-dark">Replace</button>
                                         </div>
                                     </div>
                                 </div>
@@ -135,25 +135,25 @@
                                     <div class="field has-addons">
                                         <div class="control is-expanded">
                                             <div class="select is-fullwidth">
-                                                <select name="drink-type">
+                                                <select id="drink-type" name="drink-type">
                                                     <option disabled>Random by Type</option>
-                                                    <option value="">- Any -</option>
-                                                    <option value="">Ordinary Drink</option>
-                                                    <option value="">Cocktail</option>
-                                                    <option value="">Milk / Float / Shake</option>
-                                                    <option value="">Other/Unknown</option>
-                                                    <option value="">Cocoa</option>
-                                                    <option value="">Shot</option>
-                                                    <option value="">Coffee / Tea</option>
-                                                    <option value="">Homemade Liqueur</option>
-                                                    <option value="">Punch / Party Drink</option>
-                                                    <option value="">Beer</option>
-                                                    <option value="">Soft Drink / Soda</option>
+                                                    <option value="Any">- Any -</option>
+                                                    <option value="Ordinary Drink">Ordinary Drink</option>
+                                                    <option value="Cocktail">Cocktail</option>
+                                                    <option value="Milk / Float / Shake">Milk / Float / Shake</option>
+                                                    <option value="Other/Unknown">Other/Unknown</option>
+                                                    <option value="Cocoa">Cocoa</option>
+                                                    <option value="Shot">Shot</option>
+                                                    <option value="Coffee / Tea">Coffee / Tea</option>
+                                                    <option value="Homemade Liqueur">Homemade Liqueur</option>
+                                                    <option value="Punch / Party Drink">Punch / Party Drink</option>
+                                                    <option value="Beer">Beer</option>
+                                                    <option value="Soft Drink / Soda">Soft Drink / Soda</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="control">
-                                          <button type="submit" class="button is-dark">Replace</button>
+                                          <button id="drink-type-submit" type="submit" class="button is-dark">Replace</button>
                                         </div>
                                     </div>
                                 </div>
@@ -164,85 +164,35 @@
                 </div>
                 <!-- Search Results and Saved Results Tile Columns-->
                 <div class="tile is-vertical is-9">
-                    <!-- Movie, Food, and Drink Row -->
+                    <!-- Featured Movie, Meal, and Drink Row -->
                     <div class="tile">
                         <!-- Movie Tile Column -->
                         <div class="tile is-parent">
                             <!-- Movie Section-->
-                            <article id="movie-detail" class="tile link is-parent notification is-info">
-                                <!-- Movie Poster -->
-                                <article class="tile is-child is-6" >
-                                    <figure class="image is-2by3">
-                                    <img id="poster_path" src="https://image.tmdb.org/t/p/w500/wxLUQ1pIms3HAlVGYvEG9zg2kDs.jpg">
-                                    </figure>
-                                </article>
-                                <!-- Movie Info -->
-                                <article class="m-4">
-                                    <p class="title" id="title">Jack Reacher</p>
-                                    <p class="subtitle" id="tagline">Justice is Coming.</p>
-                                    <p class="block" id="overview">Jack Reacher must uncover the truth behind a major government conspiracy in order to clear his name. On the run as a fugitive from the law, Reacher uncovers a potential secret from his past that could change his life forever.</p>
-                                    <span class="tag is-dark mb-1" id="vote_average">Rating: 5.7</span>
-                                    <span class="tag is-dark mb-1" id="popularity">Popularity: 31%</span>
-                                    <span class="tag is-dark mb-1" id="runtime">118 mins</span>
-                                    <span class="tag is-dark mb-1" id="genres">Action</span>
-                                </article>
+                            <article id="featured-movie" class="tile is-parent notification is-info">
+
                             </article>
                         </div>
-                        <!-- Food and Drink Tile Column -->
+                        <!-- Meal and Drink Tile Column -->
                         <div class="tile is-parent is-vertical">
-                            <!-- Food Section -->
-                            <article id="meal-detail" class="tile link is-parent notification is-primary">
-                                 <!-- Food Image-->
-                                <article class="tile is-child is-4" >
-                                    <figure class="image is-1x1">
-                                        <img class="is-rounded" id="strMealThumb" src="https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg">
-                                    </figure>
-                                </article>
-                                <!-- Food Info-->
-                                <article class="m-4" >
-                                    <p class="title" id="strMeal">Teriyaki Chicken Casserole</p>
-                                    <p class="subtitle" id="strCategory">Chicken (<span id="strArea">Japanese</span>)</p>
-                                    <p class="mb-2" id="ingredients">Ingredients</p>
-                                    <span class="tag is-dark mb-1" id="strIngredient1">soy sauce</span>
-                                    <span class="tag is-dark mb-1" id="strIngredient2">water</span>
-                                    <span class="tag is-dark mb-1" id="strIngredient3">brown sugar</span>
-                                    <span class="tag is-dark mb-1" id="strIngredient4">ground ginger</span>
-                                    <span class="tag is-dark mb-1" id="strIngredient5">minced garlic</span>
-                                    <span class="tag is-dark mb-1" id="strIngredient6">cornstarch</span>
-                                    <span class="tag is-dark mb-1" id="strIngredient7">chicken breasts</span>
-                                    <span class="tag is-dark mb-1" id="strIngredient8">stir-fry vegetables</span>
-                                    <span class="tag is-dark mb-1" id="strIngredient9">brown rice</span>
-                                </article>
+                            <!-- Meal Section -->
+                            <article id="featured-meal" class="tile link is-parent notification is-primary">
+                                
                             </article>
                             <!-- Drink Section -->
-                            <article id="drink-detail" class="tile link is-parent notification is-warning">
-                                 <!-- Drink Image-->
-                                <article class="tile is-child is-4" >
-                                    <figure class="image is-1x1">
-                                        <img class="is-rounded" id="strDrinkThumb" src="https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg">
-                                    </figure>
-                                </article>
-                                <!-- Drink Info-->
-                                <article class="m-4" >
-                                    <p class="title" id="strDrink">Margarita</p>
-                                    <p class="subtitle" id="strIBA">Contemporary Classics</p>
-                                    <p class="mb-2" id="ingredients">Ingredients</p>
-                                    <span class="tag is-dark mb-1" id="strIngredient1">Tequila</span>
-                                    <span class="tag is-dark mb-1" id="strIngredient2">Triple Sec</span>
-                                    <span class="tag is-dark mb-1" id="strIngredient3">Lime Juice</span>
-                                    <span class="tag is-dark mb-1" id="strIngredient4">Salt</span>
-                                </article>
+                            <article id="featured-drink" class="tile link is-parent notification is-warning">
+                                
                             </article>
                         </div>
                     </div>
-                    <!-- Saved Results Row -->
+                    <!-- Date Night Queue -->
                     <div class="tile is-parent">
                         <article class="tile is-child notification is-danger">
                             <p class="title">Date Night Queue</p>
                             <p class="subtitle">Click any of your previously saved sets below to repopulate the detail view above!</p>
                             <div class="tile">
                                 <!-- Saved Set -->
-                                <div class="card link tile is-parent is-3 mx-2 my-4" id="saved-set-1">
+                                <div class="box link tile is-parent is-3 mx-2 my-4" id="saved-set-1">
                                     <article class="tile is-child" >
                                         <button class=" my-3 button is-dark is-fullwidth is-rounded">
                                             Date Night - 1
@@ -250,7 +200,6 @@
                                         <figure class="image is-2by3 ">
                                             <img id="35056" src="https://www.themoviedb.org/t/p/w500/oXwpl4mdd8MYPkUMggREzSf9c5R.jpg">
                                         </figure>
-                                        
                                     </article>
                                     <div class="tile is-child is-vertical">
                                         <figure class="image is-1x1 m-2">
@@ -262,7 +211,7 @@
                                     </div>
                                 </div>
                                 <!-- Saved Set -->
-                                <div class="card link tile is-parent is-3 mx-2 my-4"  id="saved-set-2">
+                                <div class="box link tile is-parent is-3 mx-2 my-4"  id="saved-set-2">
                                     <article class="tile is-child" >
                                         <button class="button is-dark is-fullwidth is-rounded my-3">
                                             Date Night - 2
@@ -296,7 +245,7 @@
                     <button id="modal-close" class="delete" aria-label="close"></button>
                 </header>
                 <!-- Modal Main -->
-                <section class="modal-card-body">
+                <section id="modalMain" class="modal-card-body">
                     <!-- PICTURE -->
                     <figure class="image is-square mb-2">
                         <img id="modalImage" src="https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg">
@@ -368,15 +317,15 @@
                             Add the cooked vegetables and rice to the casserole dish with the chicken. Add most of the remaining sauce, reserving a bit to drizzle over the top when serving. Gently toss everything together in the casserole dish until combined. Return to oven and cook 15 minutes. Remove from oven and let stand 5 minutes before serving. Drizzle each serving with remaining sauce. Enjoy!
                         </p>
                     </div>
-                    <!-- VIDEO -->
+                    <!-- VIDEO
                     <figure class="image is-16by9">
                         <iframe id="modalVideo" class="has-ratio" width="640" height="360" src="https://www.youtube.com/embed/4aZr5hZXP_s" frameborder="0" allowfullscreen></iframe>
-                    </figure>
+                    </figure> -->
                 </section>
-                <!-- Modal Footer -->
+                <!-- Modal Footer
                 <footer class="modal-card-foot">
                     <button class="button is-success">Print Recipe</button>
-                </footer>
+                </footer>  -->
             </div>
         </div>
         <!-- Footer -->
