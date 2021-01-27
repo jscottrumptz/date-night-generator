@@ -3,9 +3,9 @@
 //                  //
 
 // strings that hold the currently featured item ids
-let featuredMovie = "343611";
-let featuredMeal = "52772";
-let featuredDrink = "11007";
+let featuredMovie = "";
+let featuredMeal = "";
+let featuredDrink = "";
 
 // array that holds the previously saved date nights
 let savedDateNights = [
@@ -33,48 +33,6 @@ let savedDateNights = [
 // functions //
 //           //
 
-// fetch movie data from api
-let getMovieData = function (id)
-{
-    // format themoviedb.org api url
-    let apiUrl = "https://api.themoviedb.org/3/movie/" + id + "?api_key=0a6cff8e56d74eb3ed1b51e6620176c1"
-
-    // make a request to the url
-    fetch(apiUrl)
-        .then(function(response) {
-        // if request was successful 
-            if (response.ok) {
-                response.json().then(function(data) {
-                    populateFeaturedMovie(data);
-                    // return data;
-                });
-            // request fails
-            } else {
-                $("#modal").addClass("is-active");
-                $("#modalTitle").text("Error: Unable to complete request");
-                $("#modalMain").empty().append(`<p>` + response.statusText + `</p>`);
-                // alert("Error: " + response.statusText);
-            }
-        })  
-        // alert user if there is no responce from themoviedb.org
-        .catch(function(error) {
-            $("#modalTitle").text("Unable to connect to themoviedb.org");
-            $("#modalMain").empty().append(`<p> Please check your connection </p>`);
-        })
-};
-
-// fetch meal data from api
-let getMealData = function (id)
-{
-    // make and api call to get the meal data using the meal id
-};
-
-// fetch drink data from api
-let getDrinkData = function (id)
-{
-    // make and api call to get the drink data using the drink id
-};
-
 // get a random movie id by genre
 let getRandomMovie = function () {
     // get user genre selection
@@ -85,7 +43,7 @@ let getRandomMovie = function () {
     let random = Math.floor(Math.random() * 5) + 1;
 
     // format themoviedb.org api url to select by genre randomly from the 100 most popular results
-    let apiUrl = "https://api.themoviedb.org/3/discover/movie?api_key=0a6cff8e56d74eb3ed1b51e6620176c1&language=en-US&include_adult=false&include_video=false&with_genres=" + genre + "&with_original_language=en&page=" + random;
+    let apiUrl = "https://api.themoviedb.org/3/discover/movie?api_key=0a6cff8e56d74eb3ed1b51e6620176c1&language=en-US&include_adult=false&include_video=false&with_genres=" + genre + "&vote_count.gte=100&with_original_language=en&page=" + random;
 
     // make a request to the url
     fetch(apiUrl)
@@ -93,20 +51,21 @@ let getRandomMovie = function () {
         // if request was successful 
             if (response.ok) {
                 response.json().then(function(data) {
-                    // populateFeaturedMovie(data);
+
+                    // create a random number based on the page results length
                     let randomMovie = Math.floor(Math.random() * data.results.length);
 
-                    // select a random movie from the returned list
+                    // select a random movie from the returned page of results and save it's id to the global featured movie variable
                     featuredMovie = (data.results[randomMovie].id);
 
+                    // pass the movie id to this function to populate the featured movie tile
                     populateFeaturedMovie(featuredMovie);
                 });
             // request fails
             } else {
                 $("#modal").addClass("is-active");
                 $("#modalTitle").text("Error: Unable to complete request");
-                $("#modalMain").empty().append(`<p>` + response.statusText + `</p>`);
-                // alert("Error: " + response.statusText);
+                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
             }
         })  
         // alert user if there is no responce from themoviedb.org
@@ -121,12 +80,46 @@ let getRandomMovie = function () {
 let getRandomMealByType = function() {
     let type = $("#meal-type").val() || [];
     console.log (type);
+
+    let apiUrl = ""
     
-    // make a search call to the api to get a list of meals
+    // decide what api url to use based on user input
+    if(type === "Any") {
+        // use this url for a random meal from any category
+        apiUrl = "https://www.themealdb.com/api/json/v1/1/random.php"
+    } else {
+        // format themealdb.com api url to select by category
+        apiUrl = "https://www.themealdb.com/api/json/v1/1/filter.php?c=" + type;
+    }
 
-    // select a random meal from the list
+    // make a request to the url
+    fetch(apiUrl)
+        .then(function(response) {
+        // if request was successful 
+            if (response.ok) {
+                response.json().then(function(data) {
 
-    // return the meal id
+                    // create a random number based on the results length
+                    let randomMeal = Math.floor(Math.random() * data.meals.length);
+
+                    // select a random meal from the results and save it's id to the global featuredMeal variable
+                    featuredMeal = (data.meals[randomMeal].idMeal);
+
+                    // pass the meal id to this function to populate the featured meal tile
+                    populateFeaturedMeal(featuredMeal);
+                });
+            // request fails
+            } else {
+                $("#modal").addClass("is-active");
+                $("#modalTitle").text("Error: Unable to complete request");
+                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+            }
+        })  
+        // alert user if there is no responce from themealdb.com
+        .catch(function(error) {
+            $("#modalTitle").text("Unable to connect to themealdb.com");
+            $("#modalMain").empty().append(`<p> Please check your connection </p>`);
+        })
 
 };
 
@@ -135,11 +128,45 @@ let getRandomMealByCountry = function() {
     let country = $("#meal-country").val() || [];
     console.log (country);
         
-    // make a search call to the api to get a list of meals
+    let apiUrl = ""
+    
+    // decide what api url to use based on user input
+    if(country === "Any") {
+        // use this url for a random meal from any country
+        apiUrl = "https://www.themealdb.com/api/json/v1/1/random.php"
+    } else {
+        // format themealdb.com api url to select by country
+        apiUrl = "https://www.themealdb.com/api/json/v1/1/filter.php?a=" + country;
+    }
 
-    // select a random meal from the list
+    // make a request to the url
+    fetch(apiUrl)
+        .then(function(response) {
+        // if request was successful 
+            if (response.ok) {
+                response.json().then(function(data) {
 
-    // return the meal id
+                    // create a random number based on the results length
+                    let randomMeal = Math.floor(Math.random() * data.meals.length);
+
+                    // select a random meal from the results and save it's id to the global featuredMeal variable
+                    featuredMeal = (data.meals[randomMeal].idMeal);
+
+                    // pass the meal id to this function to populate the featured meal tile
+                    populateFeaturedMeal(featuredMeal);
+                });
+            // request fails
+            } else {
+                $("#modal").addClass("is-active");
+                $("#modalTitle").text("Error: Unable to complete request");
+                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+            }
+        })  
+        // alert user if there is no responce from themealdb.com
+        .catch(function(error) {
+            $("#modalTitle").text("Unable to connect to themealdb.com");
+            $("#modalMain").empty().append(`<p> Please check your connection </p>`);
+        })
 
 };
 
@@ -148,13 +175,47 @@ let getRandomDrink = function() {
     let type = $("#drink-type").val() || [];
     console.log (type);
         
-    // make a search call to the api to get a list of drinks
+    let apiUrl = ""
+    
+    // decide what api url to use based on user input
+    if(type === "Any") {
+        // use this url for a random drink from any category
+        apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+    } else {
+        // format thecocktaildb.com api url to select by category
+        apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=" + type;
+    }
 
-    // select a random drink from the list
+    // make a request to the url
+    fetch(apiUrl)
+        .then(function(response) {
+        // if request was successful 
+            if (response.ok) {
+                response.json().then(function(data) {
 
-    // return the drink id
+                    // create a random number based on the results length
+                    let randomDrink = Math.floor(Math.random() * data.drinks.length);
 
-}
+                    // select a random drink from the results and save it's id to the global featuredDrink variable
+                    featuredDrink = (data.drinks[randomDrink].idDrink);
+
+                    // pass the drink id to this function to populate the featured drink tile
+                    populateFeaturedDrink(featuredDrink);
+                });
+            // request fails
+            } else {
+                $("#modal").addClass("is-active");
+                $("#modalTitle").text("Error: Unable to complete request");
+                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+            }
+        })  
+        // alert user if there is no responce from thecocktaildb.com
+        .catch(function(error) {
+            $("#modalTitle").text("Unable to connect to thecocktaildb.com");
+            $("#modalMain").empty().append(`<p> Please check your connection </p>`);
+        })
+
+};
 
 // populate featured Movie
 let populateFeaturedMovie = function(id) {
@@ -200,8 +261,7 @@ let populateFeaturedMovie = function(id) {
             } else {
                 $("#modal").addClass("is-active");
                 $("#modalTitle").text("Error: Unable to complete request");
-                $("#modalMain").empty().append(`<p>` + response.statusText + `</p>`);
-                // alert("Error: " + response.statusText);
+                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
             }
         })  
         // alert user if there is no responce from themoviedb.org
@@ -232,8 +292,9 @@ let populateFeaturedMovie = function(id) {
 };
 
 // populate featured Meal
-let populateFeaturedMeal = function(mealData) {
+let populateFeaturedMeal = function(id) {
 
+    console.log("Meal id is " + id);
     // call the API using the global featuredMeal variable
 
     // populate the #strMealThumb with the .strMealThumb
@@ -247,8 +308,9 @@ let populateFeaturedMeal = function(mealData) {
 };
 
 // populate featured Drink
-let populateFeaturedDrink = function(drinkData) {
+let populateFeaturedDrink = function(id) {
 
+    console.log("Drink id is " + id);
     // call the API using the global featuredDrink variable
 
     // populate the #strDrinkThumb with the .strDrinkThumb
@@ -332,6 +394,8 @@ let loadDateNights = function() {
 
 
 getRandomMovie();
+getRandomMealByType();
+getRandomDrink();
 
 //                //
 // event handlers //
