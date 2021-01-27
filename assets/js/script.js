@@ -318,8 +318,8 @@ let populateFeaturedMeal = function(id) {
                         <!-- Meal Info-->
                         <article id="meal-info" class="m-4" >
                             <p class="title" id="strMeal">` + data.meals[0].strMeal + `</p>
-                            <p class="subtitle" id="strCategory">` + data.meals[0].strCategory + ` (<span id="strArea">` + data.meals[0].strArea + `</span>)</p>
-                            <p class="mb-2" id="ingredients">Ingredients</p>
+                            <p class="subtitle mb-2" id="strCategory">` + data.meals[0].strCategory + ` (<span id="strArea">` + data.meals[0].strArea + `</span>)</p>
+                            <p class="mb-2 ml-1" id="ingredients">Ingredients</p>
                         </article>
                     `);
 
@@ -329,7 +329,7 @@ let populateFeaturedMeal = function(id) {
                         let ingredient = "strIngredient" + i;
                         // make sure the selector isn't empty
                         if( data.meals[0][ingredient] != "" && data.meals[0][ingredient] != null ) {
-                            // list the ingredient as a tag in the meal info div
+                            // list the ingredient as a tag in the meal-info article
                             $("#meal-info").append(`<span class="tag is-dark mb-1 mx-1" id="` + ingredient + `">` + data.meals[0][ingredient] + `</span>`);
                         }
                     }
@@ -341,9 +341,9 @@ let populateFeaturedMeal = function(id) {
                 $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
             }
         })  
-        // alert user if there is no responce from themoviedb.org
+        // alert user if there is no responce from themealdb.com
         .catch(function(error) {
-            $("#modalTitle").text("Unable to connect to themoviedb.org");
+            $("#modalTitle").text("Unable to connect to themealdb.com");
             $("#modalMain").empty().append(`<p> Please check your connection </p>`);
         })
 
@@ -353,15 +353,57 @@ let populateFeaturedMeal = function(id) {
 let populateFeaturedDrink = function(id) {
 
     console.log("Drink id is " + id);
-    // call the API using the global featuredDrink variable
 
-    // populate the #strDrinkThumb with the .strDrinkThumb
+    // format thecocktaildb.com api url
+    let apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id;
 
-    // populate the #strDrink with the .strDrink
+    // make a request to the url
+    fetch(apiUrl)
+        .then(function(response) {
+        // if request was successful 
+            if (response.ok) {
+                response.json().then(function(data) {
+                    console.log(data);
+                    
+                    // generate HTML to populate the featured drink section
+                    $("#featured-drink").empty().append(`
+                        <!-- Drink Image-->
+                        <article class="tile is-child is-4" >
+                            <figure class="image is-1x1">
+                                <img class="is-rounded" id="strDrinkThumb" src=` + data.drinks[0].strDrinkThumb + `>
+                            </figure>
+                        </article>
+                        <!-- Drink Info-->
+                        <article id="drink-info" class="m-4" >
+                            <p class="title" id="strDrink">` + data.drinks[0].strDrink + `</p>
+                            <p class="subtitle mb-2" id="strCategory">` + data.drinks[0].strCategory + `</p>
+                            <p class="mb-2 ml-1" id="ingredients">Ingredients</p>
+                        </article>
+                    `);
 
-    // populate the #strIBA with the .strIBA
-
-    // populate the #ingrediants with an .strIngredient[i] for loop
+                    // make a new tag for each ingredient in the drink
+                    for(i = 1; i < 21; i++){
+                        // make a string value to pass along the number for the array selector
+                        let ingredient = "strIngredient" + i;
+                        // make sure the selector isn't empty
+                        if( data.drinks[0][ingredient] != "" && data.drinks[0][ingredient] != null ) {
+                            // list the ingredient as a tag in the drink-info article
+                            $("#drink-info").append(`<span class="tag is-dark mb-1 mx-1" id="` + ingredient + `">` + data.drinks[0][ingredient] + `</span>`);
+                        }
+                    }
+                });
+            // request fails
+            } else {
+                $("#modal").addClass("is-active");
+                $("#modalTitle").text("Error: Unable to complete request");
+                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+            }
+        })  
+        // alert user if there is no responce from thecocktaildb.com 
+        .catch(function(error) {
+            $("#modalTitle").text("Unable to connect to thecocktaildb.com");
+            $("#modalMain").empty().append(`<p> Please check your connection </p>`);
+        })
 
 };
 
