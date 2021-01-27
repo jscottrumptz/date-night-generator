@@ -37,7 +37,6 @@ let savedDateNights = [
 let getRandomMovie = function () {
     // get user genre selection
     let genre = $("#movie-genre").val() || [];
-    console.log ("Selected genre id is " + genre);
 
     // set a random value for one of the first 5 pages of results
     let random = Math.floor(Math.random() * 5) + 1;
@@ -78,8 +77,8 @@ let getRandomMovie = function () {
 
 // get a random meal id by type
 let getRandomMealByType = function() {
+    // get user type selection
     let type = $("#meal-type").val() || [];
-    console.log (type);
 
     let apiUrl = ""
     
@@ -125,6 +124,7 @@ let getRandomMealByType = function() {
 
 // get a random meal id by country
 let getRandomMealByCountry = function() {
+    // get user country selection
     let country = $("#meal-country").val() || [];
     console.log (country);
         
@@ -172,8 +172,8 @@ let getRandomMealByCountry = function() {
 
 // get a random drink id by type
 let getRandomDrink = function() {
+    // get user type selection
     let type = $("#drink-type").val() || [];
-    console.log (type);
         
     let apiUrl = ""
     
@@ -235,20 +235,20 @@ let populateFeaturedMovie = function(id) {
                     
                     // generate HTML to populate the featured movie section
                     $("#featured-movie").empty().append(`
-                    <!-- Movie Poster -->
-                                <article class="tile is-child is-6" >
-                                    <figure class="image is-2by3">
-                                    <img id="poster_path" src="https://image.tmdb.org/t/p/w500` + data.poster_path +`">
-                                    </figure>
-                                </article>
-                                <!-- Movie Info -->
-                                <article id="movie-info" class="m-4">
-                                    <p class="title" id="title">` + data.title + `</p>
-                                    <p class="subtitle" id="tagline">` + data.tagline + `</p>
-                                    <p class="block" id="overview">` + data.overview + `</p>
-                                    <span class="tag is-dark mb-1" id="vote_average">Average Rating: ` + data.vote_average + `</span>
-                                    <span class="tag is-dark mb-2" id="runtime">Runtime: ` + data.runtime + ` mins</span></br>
-                                </article>
+                        <!-- Movie Poster -->
+                        <article class="tile is-child is-6" >
+                            <figure class="image is-2by3">
+                            <img id="poster_path" src="https://image.tmdb.org/t/p/w500` + data.poster_path +`">
+                            </figure>
+                        </article>
+                        <!-- Movie Info -->
+                        <article id="movie-info" class="m-4">
+                            <p class="title" id="title">` + data.title + `</p>
+                            <p class="subtitle" id="tagline">` + data.tagline + `</p>
+                            <p class="block" id="overview">` + data.overview + `</p>
+                            <span class="tag is-dark mb-1" id="vote_average">Average Rating: ` + data.vote_average + `</span>
+                            <span class="tag is-dark mb-2" id="runtime">Runtime: ` + data.runtime + ` mins</span></br>
+                        </article>
                     `);
 
                     // make a new tag for each item in the movie's genre array
@@ -295,15 +295,57 @@ let populateFeaturedMovie = function(id) {
 let populateFeaturedMeal = function(id) {
 
     console.log("Meal id is " + id);
-    // call the API using the global featuredMeal variable
 
-    // populate the #strMealThumb with the .strMealThumb
+    // format themealdb.com api url
+    let apiUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id;
 
-    // populate the #strMeal with the .strMeal
+    // make a request to the url
+    fetch(apiUrl)
+        .then(function(response) {
+        // if request was successful 
+            if (response.ok) {
+                response.json().then(function(data) {
+                    console.log(data);
+                    
+                    // generate HTML to populate the featured meal section
+                    $("#featured-meal").empty().append(`
+                        <!-- Meal Image-->
+                        <article class="tile is-child is-4" >
+                            <figure class="image is-1x1">
+                                <img class="is-rounded" id="strMealThumb" src=` + data.meals[0].strMealThumb + `>
+                            </figure>
+                        </article>
+                        <!-- Meal Info-->
+                        <article id="meal-info" class="m-4" >
+                            <p class="title" id="strMeal">` + data.meals[0].strMeal + `</p>
+                            <p class="subtitle" id="strCategory">` + data.meals[0].strCategory + ` (<span id="strArea">` + data.meals[0].strArea + `</span>)</p>
+                            <p class="mb-2" id="ingredients">Ingredients</p>
+                        </article>
+                    `);
 
-    // populate the #strCategory with the .strCategory
-
-    // populate the #ingrediants with an .strIngredient[i] for loop
+                    // make a new tag for each ingredient in the meal
+                    for(i = 1; i < 21; i++){
+                        // make a string value to pass along the number for the array selector
+                        let ingredient = "strIngredient" + i;
+                        // make sure the selector isn't empty
+                        if( data.meals[0][ingredient] != "" && data.meals[0][ingredient] != null ) {
+                            // list the ingredient as a tag in the meal info div
+                            $("#meal-info").append(`<span class="tag is-dark mb-1 mx-1" id="` + ingredient + `">` + data.meals[0][ingredient] + `</span>`);
+                        }
+                    }
+                });
+            // request fails
+            } else {
+                $("#modal").addClass("is-active");
+                $("#modalTitle").text("Error: Unable to complete request");
+                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+            }
+        })  
+        // alert user if there is no responce from themoviedb.org
+        .catch(function(error) {
+            $("#modalTitle").text("Unable to connect to themoviedb.org");
+            $("#modalMain").empty().append(`<p> Please check your connection </p>`);
+        })
 
 };
 
@@ -324,7 +366,7 @@ let populateFeaturedDrink = function(id) {
 };
 
 // populate the modal with movie details
-let movieDetail = function(movieData) {
+let movieDetail = function(id) {
     // make modal visable
     $("#modal").addClass("is-active");
 
@@ -342,7 +384,7 @@ let movieDetail = function(movieData) {
 };
 
 // populate the modal with meal details
-let mealDetail = function(mealData) {
+let mealDetail = function(id) {
     // make modal visable
     $("#modal").addClass("is-active");
 
@@ -360,7 +402,7 @@ let mealDetail = function(mealData) {
 };
 
 // populate the modal with drink details
-let drinkDetail = function(drinkData) {
+let drinkDetail = function(id) {
     // make modal visable
     $("#modal").addClass("is-active");
 
@@ -414,7 +456,7 @@ $("#featured-meal").on("click", mealDetail);
 $("#featured-drink").on("click", drinkDetail);
 
 // close modal click event
-$("#modal-close").on("click", function(event){
+$("#modal-close").on("click", function(){
     $("#modal").removeClass("is-active");
 });
 
