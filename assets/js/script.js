@@ -269,26 +269,6 @@ let populateFeaturedMovie = function(id) {
             $("#modalTitle").text("Unable to connect to themoviedb.org");
             $("#modalMain").empty().append(`<p> Please check your connection </p>`);
         })
-
-    // let random = Math.floor(Math.random() * movieData.results.length);
-
-    // select a random movie from the returned list
-    // featuredMovie = (movieData.results[random].id);
-
-    // console.log(featuredMovie)
-
-    
-    // populate the #title with the .title
-
-    // populate the #tagline with .tagline
-
-    // populate the #poster_path with the .poster_path
-
-    // populate the #vote_average && #runtime with the .vote_average && .runtime && .popularity && .genres 
-
-    // populate the #overview with the .overview
-
-    // populate available streaming services
 };
 
 // populate featured Meal
@@ -572,7 +552,6 @@ let saveDateNights = function() {
 let loadDateNights = function() {
 
 };
-
 
 getRandomMovie();
 getRandomMealByType();
