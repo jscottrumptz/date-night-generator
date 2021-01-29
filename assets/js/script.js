@@ -414,7 +414,7 @@ let mealDetail = function(id) {
 
                     <!-- PRINT SECTION -->
                     <div id="printSection">
-                        <p class="title">` + data.meals[0].strMeal + `</p>
+                        <p class="title has-text-centered">` + data.meals[0].strMeal + `</p>
                         <p class="subtitle mb-1">Instructions</p>
                         <p>` + data.meals[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
                         </br>
@@ -493,7 +493,7 @@ let drinkDetail = function(id) {
 
                     <!-- PRINT SECTION -->
                     <div id="printSection">
-                        <p class="title">` + data.drinks[0].strDrink + `</p>
+                        <p class="title has-text-centered">` + data.drinks[0].strDrink + `</p>
                         <p class="subtitle mb-1">Instructions</p>
                         <p>` + data.drinks[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
                         </br>
@@ -612,7 +612,7 @@ let loadDateNightQueue = function() {
                 </div>
             </section>
             <div class="is-pulled-right">
-            <span>Remove ` + dateNight.name + `</span><button id="` + id + `" class="mx-2 mt-1 delete" aria-label="close">
+            <span>Remove ` + dateNight.name + `</span><button id="` + id + `" class="mx-2 mt-1 delete delete-date" aria-label="close">
             </button> 
             </div>
         </div>
@@ -636,7 +636,7 @@ let loadDateNightQueue = function() {
     });
 
     // delete a date
-    $(".delete").on("click", function(event){
+    $(".delete-date").on("click", function(event){
         let deleteId = $(event.target).closest("button").attr("id");
         savedDateNights.splice(deleteId-1,1);
         saveDateNightQueue();

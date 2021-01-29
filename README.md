@@ -37,8 +37,3 @@ https://jscottrumptz.github.io/date-night-generator/
 Made with ❤️ by J Scott Rumptz, Cheryl Fogerty, Sean Johnson, and Jared Taylor.
 
 ### ©️2020 J. Scott Rumptz 
-
-
-
-
-
