@@ -107,7 +107,6 @@ let getRandomMealByType = function() {
 let getRandomMealByCountry = function() {
     // get user country selection
     let country = $("#meal-country").val() || [];
-    console.log (country);
         
     let apiUrl = ""
     
@@ -621,31 +620,41 @@ let loadDateNightQueue = function() {
     });
 
     // load a saved date
-    $(".date").on("click", function(event){
-        // get the links id value
-        let dateNightId = $(event.target).closest("section").attr("id");
-        // get the saved movie id value, save it globaly, and pass it to the function
-        featuredMovie = savedDateNights[dateNightId-1].movie;
-        populateFeaturedMovie(featuredMovie);
-        // get the saved meal id value, save it globaly, and pass it to the function
-        featuredMeal = savedDateNights[dateNightId-1].meal;
-        populateFeaturedMeal(featuredMeal);
-        // get the saved drink id value, save it globaly, and pass it to the function
-        featuredDrink = savedDateNights[dateNightId-1].drink;
-        populateFeaturedDrink(featuredDrink);
-    });
+    $(".date").on("click", saveDate);
 
     // delete a date
-    $(".delete-date").on("click", function(event){
-        let deleteId = $(event.target).closest("button").attr("id");
-        savedDateNights.splice(deleteId-1,1);
-        saveDateNightQueue();
-        loadDateNightQueue();
-    });
+    $(".delete-date").on("click", deleteDate);
 
 };
 
-// on page load call these functions
+// save a date to the date night queue
+let saveDate = function(event){
+    // get the links id value
+    let dateNightId = $(event.target).closest("section").attr("id");
+    // get the saved movie id value, save it globaly, and pass it to the function
+    featuredMovie = savedDateNights[dateNightId-1].movie;
+    populateFeaturedMovie(featuredMovie);
+    // get the saved meal id value, save it globaly, and pass it to the function
+    featuredMeal = savedDateNights[dateNightId-1].meal;
+    populateFeaturedMeal(featuredMeal);
+    // get the saved drink id value, save it globaly, and pass it to the function
+    featuredDrink = savedDateNights[dateNightId-1].drink;
+    populateFeaturedDrink(featuredDrink);
+}
+
+// remove a date from the date night queue
+let deleteDate = function(event){
+    let deleteId = $(event.target).closest("button").attr("id");
+    savedDateNights.splice(deleteId-1,1);
+    saveDateNightQueue();
+    loadDateNightQueue();
+}
+
+
+//              //
+// on page load //
+//              //
+
 getRandomMovie();
 getRandomMealByType();
 getRandomDrink();
