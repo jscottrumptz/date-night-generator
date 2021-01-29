@@ -8,6 +8,11 @@
   body * {
     visibility:hidden;
   }
+
+  #dontPrint {
+    display: none;
+  }
+  
   #printSection, #printSection * {
     visibility:visible;
   }

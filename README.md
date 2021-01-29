@@ -13,6 +13,7 @@ Get suggestions for great movie, meal and drink combinations and save your favor
 - user is given the option to individually name the date night when saving
 - clicking previously saved date nights repopulates the featured item view with their details
 - add and remove date nights from the queue
+- print recipes with just text to be printer-ink-friendly
 
 
 ## Built With

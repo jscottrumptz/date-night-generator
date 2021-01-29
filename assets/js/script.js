@@ -400,7 +400,7 @@ let mealDetail = function(id) {
                     <figure class="image is-square mb-2">
                         <img id="modalImage" src="` + data.meals[0].strMealThumb + `">
                     </figure>
-                    <!-- INGREDIANTS -->
+                    <!-- INGREDIENTS -->
                     <div id="modalDetails" class="field is-grouped is-grouped-multiline">
                     </div>
                     <!-- INSTRUCTIONS -->
@@ -418,7 +418,7 @@ let mealDetail = function(id) {
                         <p class="subtitle mb-1">Instructions</p>
                         <p>` + data.meals[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
                         </br>
-                        <p class="subtitle mb-1" >Ingrediants</p>
+                        <p class="subtitle mb-1" >Ingredients</p>
                     </div>
                     `);
 
@@ -438,7 +438,7 @@ let mealDetail = function(id) {
                                 </div>
                             </div>
                             `);
-                            // list the ingrediants for the print instructions
+                            // list the ingredients for the print instructions
                             $("#printSection").append(`
                                 <span> `+ data.meals[0][measurement] + ` ` + data.meals[0][ingredient] + ` || </span>
                             `)
@@ -483,7 +483,7 @@ let drinkDetail = function(id) {
                     <figure class="image is-square mb-2">
                         <img id="modalImage" src="` + data.drinks[0].strDrinkThumb + `">
                     </figure>
-                    <!-- INGREDIANTS -->
+                    <!-- INGREDIENTS -->
                     <div id="modalDetails" class="field is-grouped is-grouped-multiline">
                     </div>
                     <!-- INSTRUCTIONS -->
@@ -497,7 +497,7 @@ let drinkDetail = function(id) {
                         <p class="subtitle mb-1">Instructions</p>
                         <p>` + data.drinks[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
                         </br>
-                        <p class="subtitle mb-1" >Ingrediants</p>
+                        <p class="subtitle mb-1" >Ingredients</p>
                     </div>
                     `);
 
@@ -517,7 +517,7 @@ let drinkDetail = function(id) {
                                 </div>
                             </div>
                             `);
-                            // list the ingrediants for the print instructions
+                            // list the ingredients for the print instructions
                             $("#printSection").append(`
                                 <span> `+ data.drinks[0][measurement] + ` ` + data.drinks[0][ingredient] + ` || </span>
                             `)
