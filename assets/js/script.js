@@ -412,7 +412,7 @@ let mealDetail = function(id) {
                     </figure>
 
                     <!-- PRINT SECTION -->
-                    <div id="printSection">
+                    <div id="printSection" class="column is-full">
                         <p class="title has-text-centered is-size-4">` + data.meals[0].strMeal + `</p>
                         <p class="subtitle mb-1 is-size-6 has-text-weight-semibold">Instructions</p>
                         <p class="is-size-7">` + data.meals[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
@@ -491,7 +491,7 @@ let drinkDetail = function(id) {
                     </div>
 
                     <!-- PRINT SECTION -->
-                    <div id="printSection">
+                    <div id="printSection" class="column is-full">
                         <p class="title has-text-centered is-size-4">` + data.drinks[0].strDrink + `</p>
                         <p class="subtitle mb-1 is-size-6 has-text-weight-semibold">Instructions</p>
                         <p class="is-size-7">` + data.drinks[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
