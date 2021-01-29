@@ -357,24 +357,6 @@ let populateFeaturedDrink = function(id) {
 
 };
 
-// populate the modal with movie details
-let movieDetail = function(id) {
-    // make modal visable
-    $("#modal").addClass("is-active");
-
-    // call the API using the global featuredMovie variable
-
-    // populate the #modalTitle with the .title
-
-    // populate the #modalImage with the .poster_path
-
-    // populate the #modalDetails with the .vote_average && .runtime && .popularity && .genres 
-
-    // populate the #modalText with the .overview
-
-    // populate the #modalVideo with the .video (if available)
-};
-
 // populate the modal with meal details
 let mealDetail = function(id) {
 
@@ -649,7 +631,6 @@ let deleteDate = function(event){
     saveDateNightQueue();
     loadDateNightQueue();
 }
-
 
 //              //
 // on page load //

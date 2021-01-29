@@ -25,6 +25,7 @@
 
         <!-- Main Section Begin -->
         <section id="dontPrint" class="columns is-multiline m-2">
+
             <!-- Search Tile Column Begin -->
             <section class="column is-one-quarter-fullhd is-full-tablet">
                 <article class="tile is-child notification is-light">
@@ -36,7 +37,8 @@
                             After putting together a suitable trio, hit "Save Current Picks" to add them permanately to your Date Night Queue!
                         </p>
                         <div class="content">
-                            <!-- Movie -->
+
+                            <!-- Movie Type -->
                             <div class="field">
                                 <label class="label">Movie</label>
                                 <div class="field has-addons">
@@ -68,12 +70,13 @@
                                         </div>
                                     </div>
                                     <div class="control">
-                                    <button id="movie-genre-submit" type="submit" class="button is-dark">Replace</button>
+                                        <button id="movie-genre-submit" type="submit" class="button is-dark">Replace</button>
                                     </div>
                                 </div>
                                 
                             </div>
-                            <!-- Meal -->
+                            
+                            <!-- Meal Type -->
                             <div class="field mt-2">
                                 <label class="label">Meal</label>
                                 <div class="field has-addons">
@@ -98,12 +101,13 @@
                                         </div>
                                     </div>
                                     <div class="control">
-                                    <button id="meal-type-submit" type="submit" class="button is-dark">Replace</button>
+                                        <button id="meal-type-submit" type="submit" class="button is-dark">Replace</button>
                                     </div>
                                 </div>
 
                                 <p class="mt-2">or</p>
 
+                                <!-- Meal Country -->
                                 <div class="field has-addons">
                                     <div class="control is-expanded">
                                         <div class="select is-fullwidth">
@@ -139,11 +143,12 @@
                                         </div>
                                     </div>
                                     <div class="control">
-                                    <button id="meal-country-submit" type="submit" class="button is-dark">Replace</button>
+                                        <button id="meal-country-submit" type="submit" class="button is-dark">Replace</button>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Drinks -->
+
+                            <!-- Drink Type -->
                             <div class="field mt-2">
                                 <label class="label">Drinks</label>
                                 <div class="field has-addons">
@@ -167,11 +172,13 @@
                                         </div>
                                     </div>
                                     <div class="control">
-                                    <button id="drink-type-submit" type="submit" class="button is-dark">Replace</button>
+                                        <button id="drink-type-submit" type="submit" class="button is-dark">Replace</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Save Selections -->
                         <form id="save-current">
                             <input id="date-name" maxlength="20" class="mt-4 input is-link" type="text" placeholder="Name your date night">
                             <button id="save-picks" type="submit" class="my-4 button is-medium is-link is-rounded is-fullwidth" > Save Current Picks</button>
@@ -192,18 +199,18 @@
                             <div class="tile is-parent">
                                 <!-- Movie Section-->
                                 <article id="featured-movie" class="tile is-parent notification is-info">
-
+                                    <!-- content populated by script.js -->
                                 </article>
                             </div>
                             <!-- Meal and Drink Tile Column -->
                             <div class="tile is-parent is-vertical">
                                 <!-- Meal Section -->
                                 <article id="featured-meal" class="tile is-parent notification is-primary is-clickable">
-                                    
+                                    <!-- content populated by script.js -->
                                 </article>
                                 <!-- Drink Section -->
                                 <article id="featured-drink" class="tile is-parent notification is-warning is-clickable">
-                                    
+                                    <!-- content populated by script.js -->
                                 </article>
                             </div>
                         </div>
@@ -215,7 +222,7 @@
                                 <p class="title">Date Night Queue</p>
                                 <p class="subtitle">Click any of your previously saved sets below to repopulate the detail view above!</p>
                                 <div id="date-night-queue" class="columns is-multiline ml-1 mb-2">
-
+                                    <!-- content populated by script.js -->
                                 </div>
                             </article>
                         </div>
@@ -240,7 +247,7 @@
                 </header>
                 <!-- Modal Main -->
                 <section id="modalMain" class="modal-card-body">
-                    
+                    <!-- content populated by script.js -->
                 </section>
                 <!-- Modal Footer -->
                 <footer id="modal-footer" class="modal-card-foot is-hidden">
@@ -258,7 +265,7 @@
                     </br>
                         <a href="https://rumptz.tech" target="_blank">J. Scott Rumptz</a>, <a href=#>Cheryl Fogerty</a>, <a href=#>Sean Johnson</a>, <a href=#>Jared Taylor</a>. 
                     </br>
-                        The website was created for educational purposes only and uses the following APIs...
+                        This website was created for educational purposes only and uses the following APIs...
                 </p>
                 <a href="https://www.themealdb.com/api.php" target="_blank">
                     <img class="mt-1" height="100px" src="https://www.themealdb.com/images/logo-small.png">
