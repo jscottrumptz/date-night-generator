@@ -284,7 +284,7 @@ let populateFeaturedMeal = function(id) {
                         // make sure the selector isn't empty
                         if( data.meals[0][ingredient] != "" && data.meals[0][ingredient] != null ) {
                             // list the ingredient as a tag in the meal-info article
-                            $("#meal-info").append(`<span class="tag is-dark mb-1 mx-1" id="` + ingredient + `">` + data.meals[0][ingredient] + `</span>`);
+                            $("#meal-info").append(`<span class="tag is-dark mb-1 mx-1 is-capitalized" id="` + ingredient + `">` + data.meals[0][ingredient] + `</span>`);
                         }
                     }
                 });
@@ -338,7 +338,7 @@ let populateFeaturedDrink = function(id) {
                         // make sure the selector isn't empty
                         if( data.drinks[0][ingredient] != "" && data.drinks[0][ingredient] != null ) {
                             // list the ingredient as a tag in the drink-info article
-                            $("#drink-info").append(`<span class="tag is-dark mb-1 mx-1" id="` + ingredient + `">` + data.drinks[0][ingredient] + `</span>`);
+                            $("#drink-info").append(`<span class="tag is-dark mb-1 mx-1 is-capitalized" id="` + ingredient + `">` + data.drinks[0][ingredient] + `</span>`);
                         }
                     }
                 });
@@ -413,11 +413,11 @@ let mealDetail = function(id) {
 
                     <!-- PRINT SECTION -->
                     <div id="printSection">
-                        <p class="title has-text-centered">` + data.meals[0].strMeal + `</p>
-                        <p class="subtitle mb-1">Instructions</p>
-                        <p>` + data.meals[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
+                        <p class="title has-text-centered is-size-4">` + data.meals[0].strMeal + `</p>
+                        <p class="subtitle mb-1 is-size-6 has-text-weight-semibold">Instructions</p>
+                        <p class="is-size-7">` + data.meals[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
                         </br>
-                        <p class="subtitle mb-1" >Ingredients</p>
+                        <p class="subtitle mb-1 is-size-6 has-text-weight-semibold" >Ingredients</p>
                     </div>
                     `);
 
@@ -432,14 +432,14 @@ let mealDetail = function(id) {
                             $("#modalDetails").append(`
                             <div class="control">
                                 <div class="tags has-addons">
-                                    <span class="tag is-link">` + data.meals[0][measurement] + `</span>
-                                    <span class="tag is-dark">` + data.meals[0][ingredient] + `</span>
+                                    <span class="tag is-link is-lowercase">` + data.meals[0][measurement] + `</span>
+                                    <span class="tag is-dark is-capitalized">` + data.meals[0][ingredient] + `</span>
                                 </div>
                             </div>
                             `);
                             // list the ingredients for the print instructions
                             $("#printSection").append(`
-                                <span> `+ data.meals[0][measurement] + ` ` + data.meals[0][ingredient] + ` || </span>
+                                <span class="is-lowercase is-size-7"> `+ data.meals[0][measurement] + ` ` + data.meals[0][ingredient] + ` || </span>
                             `)
                         }
                     }
@@ -492,11 +492,11 @@ let drinkDetail = function(id) {
 
                     <!-- PRINT SECTION -->
                     <div id="printSection">
-                        <p class="title has-text-centered">` + data.drinks[0].strDrink + `</p>
-                        <p class="subtitle mb-1">Instructions</p>
-                        <p>` + data.drinks[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
+                        <p class="title has-text-centered is-size-4">` + data.drinks[0].strDrink + `</p>
+                        <p class="subtitle mb-1 is-size-6 has-text-weight-semibold">Instructions</p>
+                        <p class="is-size-7">` + data.drinks[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
                         </br>
-                        <p class="subtitle mb-1" >Ingredients</p>
+                        <p class="subtitle mb-1 is-size-6 has-text-weight-semibold" >Ingredients</p>
                     </div>
                     `);
 
@@ -511,14 +511,14 @@ let drinkDetail = function(id) {
                             $("#modalDetails").append(`
                             <div class="control">
                                 <div class="tags has-addons">
-                                    <span class="tag is-link">` + data.drinks[0][measurement] + `</span>
-                                    <span class="tag is-dark">` + data.drinks[0][ingredient] + `</span>
+                                    <span class="tag is-link is-lowercase">` + data.drinks[0][measurement] + `</span>
+                                    <span class="tag is-dark is-capitalized">` + data.drinks[0][ingredient] + `</span>
                                 </div>
                             </div>
                             `);
                             // list the ingredients for the print instructions
                             $("#printSection").append(`
-                                <span> `+ data.drinks[0][measurement] + ` ` + data.drinks[0][ingredient] + ` || </span>
+                                <span class="is-lowercase is-size-7"> `+ data.drinks[0][measurement] + ` ` + data.drinks[0][ingredient] + ` || </span>
                             `)
                         }
                     }
