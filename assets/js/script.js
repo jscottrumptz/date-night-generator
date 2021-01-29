@@ -232,7 +232,7 @@ let populateFeaturedMovie = function(id) {
                     data.genres.forEach(genre => $("#movie-info").append(`<span class="tag is-link mb-1 mx-1" id="` + genre.name + `">` + genre.name + `</span>`));
 
                     $("#movie-info").append(`</br><a href="https://www.imdb.com/title/` + data.imdb_id + `/" target="_blank" class="button is-rounded is-warning mt-2">View on IMDB</a>`);
-                    
+
                 });
             // request fails
             } else {
@@ -602,15 +602,15 @@ let loadDateNightQueue = function() {
     });
 
     // load a saved date
-    $(".date").on("click", saveDate);
+    $(".date").on("click", loadDate);
 
     // delete a date
     $(".delete-date").on("click", deleteDate);
 
 };
 
-// save a date to the date night queue
-let saveDate = function(event){
+// load to featured from the date night queue
+let loadDate = function(event){
     // get the links id value
     let dateNightId = $(event.target).closest("section").attr("id");
     // get the saved movie id value, save it globaly, and pass it to the function
@@ -622,6 +622,10 @@ let saveDate = function(event){
     // get the saved drink id value, save it globaly, and pass it to the function
     featuredDrink = savedDateNights[dateNightId-1].drink;
     populateFeaturedDrink(featuredDrink);
+    // scroll to featured section
+    let elmt = document.getElementById("featured-movie");
+    elmt.scrollIntoView(true);
+    
 }
 
 // remove a date from the date night queue
@@ -630,6 +634,58 @@ let deleteDate = function(event){
     savedDateNights.splice(deleteId-1,1);
     saveDateNightQueue();
     loadDateNightQueue();
+}
+
+// get a new movie
+let newMovie = function() {
+
+    // get a random Movie
+    getRandomMovie();
+
+    // scroll to featured section if on tablet or mobile
+    if($(window).width() <= 1390){ 
+        let elmt = document.getElementById("featured-movie");
+        elmt.scrollIntoView(true);
+    }
+}
+
+// get a new meal by type
+let newMealByType = function() {
+
+    // get a random meal
+    getRandomMealByType();
+
+    // scroll to featured section if on tablet or mobile
+    if($(window).width() <= 1390){ 
+        let elmt = document.getElementById("featured-meal");
+        elmt.scrollIntoView(true);
+    }
+}
+
+// get a new meal by Country
+let newMealByCountry = function() {
+
+    // get a random meal
+    getRandomMealByCountry();
+
+    // scroll to featured section if on tablet or mobile
+    if($(window).width() <= 1390){ 
+        let elmt = document.getElementById("featured-meal");
+        elmt.scrollIntoView(true);
+    }
+}
+
+// get a new drink by type
+let newDrink = function() {
+
+    // get a random drink
+    getRandomDrink();
+
+    // scroll to featured section if on tablet or mobile
+    if($(window).width() <= 1390){ 
+        let elmt = document.getElementById("featured-drink");
+        elmt.scrollIntoView(true);
+    }
 }
 
 //              //
@@ -658,16 +714,16 @@ $("#modal-close").on("click", function(){
 });
 
 // replace movie click event
-$("#movie-genre-submit").on("click", getRandomMovie);
+$("#movie-genre-submit").on("click", newMovie);
 
 // replace meal type click event
-$("#meal-type-submit").on("click", getRandomMealByType);
+$("#meal-type-submit").on("click", newMealByType);
 
 // replace meal country click event
-$("#meal-country-submit").on("click", getRandomMealByCountry);
+$("#meal-country-submit").on("click", newMealByCountry);
 
 // replace drink click event
-$("#drink-type-submit").on("click", getRandomDrink);
+$("#drink-type-submit").on("click", newDrink);
 
 // save picks click event
 $("#save-current").submit(saveCurrentPicks)
