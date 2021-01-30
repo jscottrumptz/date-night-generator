@@ -287,6 +287,7 @@ let populateFeaturedMeal = function(id) {
                             $("#meal-info").append(`<span class="tag is-dark mb-1 mx-1 is-capitalized" id="` + ingredient + `">` + data.meals[0][ingredient] + `</span>`);
                         }
                     }
+                    $("#meal-info").append(`<p class="tag is-light mb-1 mx-1">more details...</p>`);
                 });
             // request fails
             } else {
@@ -341,6 +342,7 @@ let populateFeaturedDrink = function(id) {
                             $("#drink-info").append(`<span class="tag is-dark mb-1 mx-1 is-capitalized" id="` + ingredient + `">` + data.drinks[0][ingredient] + `</span>`);
                         }
                     }
+                    $("#drink-info").append(`<p class="tag is-light mb-1 mx-1">more details...</p>`);
                 });
             // request fails
             } else {
