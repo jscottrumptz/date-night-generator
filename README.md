@@ -10,10 +10,12 @@ Get suggestions for great movie, meal and drink combinations and save your favor
 - display the most pertinent information in the featured item view
 - drill down to a detail view for recipe instructions or videos from the featured view
 - save all items in the featured view as a date night and place them in the queue 
-- user is given the option to individually name the date night when saving
+- user is given the option to individually name each date night when saving
+- if the user doesn't name the date night, a name is auto-generated
 - clicking previously saved date nights repopulates the featured item view with their details
-- add and remove date nights from the queue
-- print recipes with just text to be printer-ink-friendly
+- user may add and remove date nights from the queue
+- in detail view, print the recipes with only text to be printer-ink-friendly
+- page is responsive and mobile friendly
 
 
 ## Built With
@@ -31,7 +33,7 @@ Get suggestions for great movie, meal and drink combinations and save your favor
 ## Website
 https://jscottrumptz.github.io/date-night-generator/
 
-![image](https://user-images.githubusercontent.com/74981245/106288218-5da31d80-620d-11eb-996a-1af4041e9cb7.png)
+![image](https://user-images.githubusercontent.com/74981245/106368421-efdf1a80-630e-11eb-938c-a2f3f6249f80.png)
 
 ## Contribution
 Made with ❤️ by J Scott Rumptz, Cheryl Fogerty, Sean Johnson, and Jared Taylor.
