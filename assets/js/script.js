@@ -549,6 +549,12 @@ let saveCurrentPicks = function(event) {
 
     saveDateNightQueue();
     loadDateNightQueue();
+
+    // scroll to featured section if on tablet or mobile
+    if($(window).width() <= 1390){ 
+        let elmt = document.getElementById("date-night-queue");
+        elmt.scrollIntoView(true);
+    }
 };
 
 // save the date nights to local storage
