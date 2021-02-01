@@ -7,7 +7,7 @@ let featuredMovie = "";
 let featuredMeal = "";
 let featuredDrink = "";
 
-// array that holds the previously saved date nights
+// array that holds the saved date nights in the date night queue
 let savedDateNights = [];
 
 //           //
@@ -526,14 +526,19 @@ let saveCurrentPicks = function(event) {
     // stop page from refreshing
     event.preventDefault();
 
+    // create an empty string to hold the name of the date night
     let dateName = ""
 
+    // check if the user named the date night
     if($("#date-name").val() === "") {
+        // if not, check how many date nights are currently saved and create a generic name
         dateName = "Date Night - " + (savedDateNights.length + 1)
     } else {
+        // use the users entered name 
         dateName = $("#date-name").val()
     }
 
+    // add the date night into the array
     savedDateNights.push({
         name: dateName,
         movie: featuredMovie.toString(), 
@@ -547,6 +552,7 @@ let saveCurrentPicks = function(event) {
     // clear the search input
     $("#date-name").val("");
 
+    // save and re-load the queue
     saveDateNightQueue();
     loadDateNightQueue();
 
@@ -576,7 +582,8 @@ let loadDateNightQueue = function() {
 
     // set an id value for the array
     let id = 0
-    // populate the queue with the saved date nights
+
+    // populate the queue with the saved date nights and assign an unique id for each
     savedDateNights.forEach(function(dateNight) {
         id++
         $("#date-night-queue").append(`
@@ -609,10 +616,10 @@ let loadDateNightQueue = function() {
         `)
     });
 
-    // load a saved date
+    // event handler for loading a saved date night
     $(".date").on("click", loadDate);
 
-    // delete a date
+    // event handler for deleting a saved date night
     $(".delete-date").on("click", deleteDate);
 
 };
@@ -638,8 +645,12 @@ let loadDate = function(event){
 
 // remove a date from the date night queue
 let deleteDate = function(event){
+    // get the date night's id that is being deleted
     let deleteId = $(event.target).closest("button").attr("id");
+    // use the id to find the correct date in the array to remove
     savedDateNights.splice(deleteId-1,1);
+
+    // refresh the queue
     saveDateNightQueue();
     loadDateNightQueue();
 }
@@ -735,3 +746,6 @@ $("#drink-type-submit").on("click", newDrink);
 
 // save picks click event
 $("#save-current").submit(saveCurrentPicks)
+
+// event handlers for loading and deleting date nights 
+// are initialized at the end of the loadDateNightQueue function
