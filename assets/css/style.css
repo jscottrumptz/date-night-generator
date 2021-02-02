@@ -1,0 +1,31 @@
+@media screen {
+  /* make sure that anything with the id="printSection" is not displayed on the page */
+  #printSection {
+      display: none;
+  }
+}
+
+
+@media print {
+  /* clear all page content before printing */
+  body * {
+    visibility:hidden;
+  }
+
+  /* remove unwanted sections */
+  #dontPrint {
+    display: none;
+  }
+  
+  /* make anything with the id="printSection" visable to print */
+  #printSection, #printSection * {
+    visibility:visible;
+  }
+
+  /* position the printable content in the upper left hand corner of the page */
+  #printSection {
+    position:absolute;
+    left:0;
+    top:0;
+  }
+}

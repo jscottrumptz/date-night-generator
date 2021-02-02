@@ -7,27 +7,8 @@ let featuredMovie = "";
 let featuredMeal = "";
 let featuredDrink = "";
 
-// array that holds the previously saved date nights
-let savedDateNights = [
-    { 
-        id: 1, 
-        movie: "35056", 
-        movieImg: "https://www.themoviedb.org/t/p/w500/oXwpl4mdd8MYPkUMggREzSf9c5R.jpg",
-        meal: "52992",
-        mealImg: "https://www.themealdb.com/images/media/meals/o2wb6p1581005243.jpg",
-        drink: "11001",
-        drinkImg: "https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg"
-    },
-    { 
-        id: 2, 
-        movie: "2493", 
-        movieImg: "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/whF3YddFYSwJNuHEvi5lpsnty2l.jpg",
-        meal: "52987",
-        mealImg: "https://www.themealdb.com/images/media/meals/xr0n4r1576788363.jpg",
-        drink: "11009",
-        drinkImg: "https://www.thecocktaildb.com/images/media/drink/3pylqc1504370988.jpg"
-        }
-];
+// array that holds the saved date nights in the date night queue
+let savedDateNights = [];
 
 //           //
 // functions //
@@ -126,7 +107,6 @@ let getRandomMealByType = function() {
 let getRandomMealByCountry = function() {
     // get user country selection
     let country = $("#meal-country").val() || [];
-    console.log (country);
         
     let apiUrl = ""
     
@@ -220,8 +200,6 @@ let getRandomDrink = function() {
 // populate featured Movie
 let populateFeaturedMovie = function(id) {
 
-    console.log("Movie id is " + id);
-
     // format themoviedb.org api url
     let apiUrl = "https://api.themoviedb.org/3/movie/" + id + "?api_key=0a6cff8e56d74eb3ed1b51e6620176c1"
 
@@ -231,7 +209,6 @@ let populateFeaturedMovie = function(id) {
         // if request was successful 
             if (response.ok) {
                 response.json().then(function(data) {
-                    console.log(data);
                     
                     // generate HTML to populate the featured movie section
                     $("#featured-movie").empty().append(`
@@ -255,7 +232,7 @@ let populateFeaturedMovie = function(id) {
                     data.genres.forEach(genre => $("#movie-info").append(`<span class="tag is-link mb-1 mx-1" id="` + genre.name + `">` + genre.name + `</span>`));
 
                     $("#movie-info").append(`</br><a href="https://www.imdb.com/title/` + data.imdb_id + `/" target="_blank" class="button is-rounded is-warning mt-2">View on IMDB</a>`);
-                    
+
                 });
             // request fails
             } else {
@@ -274,8 +251,6 @@ let populateFeaturedMovie = function(id) {
 // populate featured Meal
 let populateFeaturedMeal = function(id) {
 
-    console.log("Meal id is " + id);
-
     // format themealdb.com api url
     let apiUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id;
 
@@ -285,7 +260,6 @@ let populateFeaturedMeal = function(id) {
         // if request was successful 
             if (response.ok) {
                 response.json().then(function(data) {
-                    console.log(data);
                     
                     // generate HTML to populate the featured meal section
                     $("#featured-meal").empty().append(`
@@ -310,9 +284,10 @@ let populateFeaturedMeal = function(id) {
                         // make sure the selector isn't empty
                         if( data.meals[0][ingredient] != "" && data.meals[0][ingredient] != null ) {
                             // list the ingredient as a tag in the meal-info article
-                            $("#meal-info").append(`<span class="tag is-dark mb-1 mx-1" id="` + ingredient + `">` + data.meals[0][ingredient] + `</span>`);
+                            $("#meal-info").append(`<span class="tag is-dark mb-1 mx-1 is-capitalized" id="` + ingredient + `">` + data.meals[0][ingredient] + `</span>`);
                         }
                     }
+                    $("#meal-info").append(`<p class="tag is-light mb-1 mx-1">more details...</p>`);
                 });
             // request fails
             } else {
@@ -331,8 +306,6 @@ let populateFeaturedMeal = function(id) {
 // populate featured Drink
 let populateFeaturedDrink = function(id) {
 
-    console.log("Drink id is " + id);
-
     // format thecocktaildb.com api url
     let apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id;
 
@@ -342,7 +315,6 @@ let populateFeaturedDrink = function(id) {
         // if request was successful 
             if (response.ok) {
                 response.json().then(function(data) {
-                    console.log(data);
                     
                     // generate HTML to populate the featured drink section
                     $("#featured-drink").empty().append(`
@@ -367,9 +339,10 @@ let populateFeaturedDrink = function(id) {
                         // make sure the selector isn't empty
                         if( data.drinks[0][ingredient] != "" && data.drinks[0][ingredient] != null ) {
                             // list the ingredient as a tag in the drink-info article
-                            $("#drink-info").append(`<span class="tag is-dark mb-1 mx-1" id="` + ingredient + `">` + data.drinks[0][ingredient] + `</span>`);
+                            $("#drink-info").append(`<span class="tag is-dark mb-1 mx-1 is-capitalized" id="` + ingredient + `">` + data.drinks[0][ingredient] + `</span>`);
                         }
                     }
+                    $("#drink-info").append(`<p class="tag is-light mb-1 mx-1">more details...</p>`);
                 });
             // request fails
             } else {
@@ -384,24 +357,6 @@ let populateFeaturedDrink = function(id) {
             $("#modalMain").empty().append(`<p> Please check your connection </p>`);
         })
 
-};
-
-// populate the modal with movie details
-let movieDetail = function(id) {
-    // make modal visable
-    $("#modal").addClass("is-active");
-
-    // call the API using the global featuredMovie variable
-
-    // populate the #modalTitle with the .title
-
-    // populate the #modalImage with the .poster_path
-
-    // populate the #modalDetails with the .vote_average && .runtime && .popularity && .genres 
-
-    // populate the #modalText with the .overview
-
-    // populate the #modalVideo with the .video (if available)
 };
 
 // populate the modal with meal details
@@ -419,6 +374,7 @@ let mealDetail = function(id) {
                     
                     // make modal visable
                     $("#modal").addClass("is-active");
+                    $("#modal-footer").removeClass("is-hidden");
 
                     // generate HTML to populate the featured meal section
                     $("#modalTitle").text(data.meals[0].strMeal);
@@ -427,7 +383,7 @@ let mealDetail = function(id) {
                     <figure class="image is-square mb-2">
                         <img id="modalImage" src="` + data.meals[0].strMealThumb + `">
                     </figure>
-                    <!-- INGREDIANTS -->
+                    <!-- INGREDIENTS -->
                     <div id="modalDetails" class="field is-grouped is-grouped-multiline">
                     </div>
                     <!-- INSTRUCTIONS -->
@@ -438,6 +394,15 @@ let mealDetail = function(id) {
                     <figure class="image is-16by9">
                         <iframe id="modalVideo" class="has-ratio" width="640" height="360" src="https://www.youtube.com/embed/` + data.meals[0].strYoutube.substring(32) + `" frameborder="0" allowfullscreen></iframe>
                     </figure>
+
+                    <!-- PRINT SECTION -->
+                    <div id="printSection" class="column is-full">
+                        <p class="title has-text-centered is-size-4">` + data.meals[0].strMeal + `</p>
+                        <p class="subtitle mb-1 is-size-6 has-text-weight-semibold">Instructions</p>
+                        <p class="is-size-7">` + data.meals[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
+                        </br>
+                        <p class="subtitle mb-1 is-size-6 has-text-weight-semibold" >Ingredients</p>
+                    </div>
                     `);
 
                     // make a new tag for each ingredient in the meal
@@ -451,11 +416,15 @@ let mealDetail = function(id) {
                             $("#modalDetails").append(`
                             <div class="control">
                                 <div class="tags has-addons">
-                                    <span class="tag is-link">` + data.meals[0][measurement] + `</span>
-                                    <span class="tag is-dark">` + data.meals[0][ingredient] + `</span>
+                                    <span class="tag is-link is-lowercase">` + data.meals[0][measurement] + `</span>
+                                    <span class="tag is-dark is-capitalized">` + data.meals[0][ingredient] + `</span>
                                 </div>
                             </div>
                             `);
+                            // list the ingredients for the print instructions
+                            $("#printSection").append(`
+                                <span class="is-lowercase is-size-7"> `+ data.meals[0][measurement] + ` ` + data.meals[0][ingredient] + ` || </span>
+                            `)
                         }
                     }
                 });
@@ -488,6 +457,7 @@ let drinkDetail = function(id) {
 
                     // make modal visable
                     $("#modal").addClass("is-active");
+                    $("#modal-footer").removeClass("is-hidden");
                     
                     // generate HTML to populate the featured meal section
                     $("#modalTitle").text(data.drinks[0].strDrink);
@@ -496,12 +466,21 @@ let drinkDetail = function(id) {
                     <figure class="image is-square mb-2">
                         <img id="modalImage" src="` + data.drinks[0].strDrinkThumb + `">
                     </figure>
-                    <!-- INGREDIANTS -->
+                    <!-- INGREDIENTS -->
                     <div id="modalDetails" class="field is-grouped is-grouped-multiline">
                     </div>
                     <!-- INSTRUCTIONS -->
                     <div class="notification">
                         <p id="modalText">` + data.drinks[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
+                    </div>
+
+                    <!-- PRINT SECTION -->
+                    <div id="printSection" class="column is-full">
+                        <p class="title has-text-centered is-size-4">` + data.drinks[0].strDrink + `</p>
+                        <p class="subtitle mb-1 is-size-6 has-text-weight-semibold">Instructions</p>
+                        <p class="is-size-7">` + data.drinks[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
+                        </br>
+                        <p class="subtitle mb-1 is-size-6 has-text-weight-semibold" >Ingredients</p>
                     </div>
                     `);
 
@@ -516,11 +495,15 @@ let drinkDetail = function(id) {
                             $("#modalDetails").append(`
                             <div class="control">
                                 <div class="tags has-addons">
-                                    <span class="tag is-link">` + data.drinks[0][measurement] + `</span>
-                                    <span class="tag is-dark">` + data.drinks[0][ingredient] + `</span>
+                                    <span class="tag is-link is-lowercase">` + data.drinks[0][measurement] + `</span>
+                                    <span class="tag is-dark is-capitalized">` + data.drinks[0][ingredient] + `</span>
                                 </div>
                             </div>
                             `);
+                            // list the ingredients for the print instructions
+                            $("#printSection").append(`
+                                <span class="is-lowercase is-size-7"> `+ data.drinks[0][measurement] + ` ` + data.drinks[0][ingredient] + ` || </span>
+                            `)
                         }
                     }
                 });
@@ -539,33 +522,203 @@ let drinkDetail = function(id) {
 };
 
 // save the current featured values as a date night
-let saveCurrentPicks = function() {
+let saveCurrentPicks = function(event) {
+    // stop page from refreshing
+    event.preventDefault();
 
+    // create an empty string to hold the name of the date night
+    let dateName = ""
+
+    // check if the user named the date night
+    if($("#date-name").val() === "") {
+        // if not, check how many date nights are currently saved and create a generic name
+        dateName = "Date Night - " + (savedDateNights.length + 1)
+    } else {
+        // use the users entered name 
+        dateName = $("#date-name").val()
+    }
+
+    // add the date night into the array
+    savedDateNights.push({
+        name: dateName,
+        movie: featuredMovie.toString(), 
+        movieImg: $("#poster_path").attr("src"),
+        meal: featuredMeal,
+        mealImg: $("#strMealThumb").attr("src"),
+        drink: featuredDrink,
+        drinkImg: $("#strDrinkThumb").attr("src")
+    });
+
+    // clear the search input
+    $("#date-name").val("");
+
+    // save and re-load the queue
+    saveDateNightQueue();
+    loadDateNightQueue();
+
+    // scroll to featured section if on tablet or mobile
+    if($(window).width() <= 1390){ 
+        let elmt = document.getElementById("date-night-queue");
+        elmt.scrollIntoView(true);
+    }
 };
 
 // save the date nights to local storage
-let saveDateNights = function() {
-
+let saveDateNightQueue = function() {
+    localStorage.setItem("savedDateNights", JSON.stringify(savedDateNights));
 };
 
 // load the date nights from local storage
-let loadDateNights = function() {
+let loadDateNightQueue = function() {
+    savedDateNights = JSON.parse(localStorage.getItem("savedDateNights"));
+  
+    // if nothing in localStorage, create an empty searchHistory array and an empty lastCitySearched string
+    if (!savedDateNights) {
+        savedDateNights = []
+    }
+
+    // empty the queue
+    $("#date-night-queue").empty();
+
+    // set an id value for the array
+    let id = 0
+
+    // populate the queue with the saved date nights and assign an unique id for each
+    savedDateNights.forEach(function(dateNight) {
+        id++
+        $("#date-night-queue").append(`
+        <!-- Saved Set Begin -->
+        <div class="column is-one-quarter-fullhd is-half-tablet mb-5">
+            <section class="card columns is-multiline is-vcentered is-mobile m-2 is-clickable date" id="` + id + `">   
+                <button class=" mx-3 mt-3 button is-dark is-fullwidth is-rounded">
+                    ` + dateNight.name +  `
+                </button>
+                <article class="column">
+                    <figure class="image is-2by3">
+                        <img id="movie-` + dateNight.movie + `" src="` + dateNight.movieImg + `">
+                    </figure>
+                </article>
+                <div class="column">
+                    <figure class="image is-1by1">
+                        <img class="is-rounded" id="meal-` + dateNight.meal + `" src="` + dateNight.mealImg + `">
+                    </figure>
+                    <figure class="image is-1by1 mt-2">
+                        <img class="is-rounded" id="drink-` + dateNight.drink + `" src="` + dateNight.drinkImg + `">
+                    </figure>
+                </div>
+            </section>
+            <div class="is-pulled-right">
+            <span>Remove ` + dateNight.name + `</span><button id="` + id + `" class="mx-2 mt-1 delete delete-date" aria-label="close">
+            </button> 
+            </div>
+        </div>
+        <!-- Saved Set End -->
+        `)
+    });
+
+    // event handler for loading a saved date night
+    $(".date").on("click", loadDate);
+
+    // event handler for deleting a saved date night
+    $(".delete-date").on("click", deleteDate);
 
 };
+
+// load to featured from the date night queue
+let loadDate = function(event){
+    // get the links id value
+    let dateNightId = $(event.target).closest("section").attr("id");
+    // get the saved movie id value, save it globaly, and pass it to the function
+    featuredMovie = savedDateNights[dateNightId-1].movie;
+    populateFeaturedMovie(featuredMovie);
+    // get the saved meal id value, save it globaly, and pass it to the function
+    featuredMeal = savedDateNights[dateNightId-1].meal;
+    populateFeaturedMeal(featuredMeal);
+    // get the saved drink id value, save it globaly, and pass it to the function
+    featuredDrink = savedDateNights[dateNightId-1].drink;
+    populateFeaturedDrink(featuredDrink);
+    // scroll to featured section
+    let elmt = document.getElementById("featured-movie");
+    elmt.scrollIntoView(true);
+    
+}
+
+// remove a date from the date night queue
+let deleteDate = function(event){
+    // get the date night's id that is being deleted
+    let deleteId = $(event.target).closest("button").attr("id");
+    // use the id to find the correct date in the array to remove
+    savedDateNights.splice(deleteId-1,1);
+
+    // refresh the queue
+    saveDateNightQueue();
+    loadDateNightQueue();
+}
+
+// get a new movie
+let newMovie = function() {
+
+    // get a random Movie
+    getRandomMovie();
+
+    // scroll to featured section if on tablet or mobile
+    if($(window).width() <= 1390){ 
+        let elmt = document.getElementById("featured-movie");
+        elmt.scrollIntoView(true);
+    }
+}
+
+// get a new meal by type
+let newMealByType = function() {
+
+    // get a random meal
+    getRandomMealByType();
+
+    // scroll to featured section if on tablet or mobile
+    if($(window).width() <= 1390){ 
+        let elmt = document.getElementById("featured-meal");
+        elmt.scrollIntoView(true);
+    }
+}
+
+// get a new meal by Country
+let newMealByCountry = function() {
+
+    // get a random meal
+    getRandomMealByCountry();
+
+    // scroll to featured section if on tablet or mobile
+    if($(window).width() <= 1390){ 
+        let elmt = document.getElementById("featured-meal");
+        elmt.scrollIntoView(true);
+    }
+}
+
+// get a new drink by type
+let newDrink = function() {
+
+    // get a random drink
+    getRandomDrink();
+
+    // scroll to featured section if on tablet or mobile
+    if($(window).width() <= 1390){ 
+        let elmt = document.getElementById("featured-drink");
+        elmt.scrollIntoView(true);
+    }
+}
+
+//              //
+// on page load //
+//              //
 
 getRandomMovie();
 getRandomMealByType();
 getRandomDrink();
+loadDateNightQueue();
 
 //                //
 // event handlers //
 //                //
-
-// change arrow to finger to signify click events
-$(".link").css('cursor', 'pointer');
-
-// movie detail click event
-// $("#featured-movie").on("click", movieDetail);
 
 // meal detail click event
 $("#featured-meal").on("click", mealDetail);
@@ -576,16 +729,23 @@ $("#featured-drink").on("click", drinkDetail);
 // close modal click event
 $("#modal-close").on("click", function(){
     $("#modal").removeClass("is-active");
+    $("#modal-footer").addClass("is-hidden");
 });
 
 // replace movie click event
-$("#movie-genre-submit").on("click", getRandomMovie);
+$("#movie-genre-submit").on("click", newMovie);
 
 // replace meal type click event
-$("#meal-type-submit").on("click", getRandomMealByType);
+$("#meal-type-submit").on("click", newMealByType);
 
 // replace meal country click event
-$("#meal-country-submit").on("click", getRandomMealByCountry);
+$("#meal-country-submit").on("click", newMealByCountry);
 
 // replace drink click event
-$("#drink-type-submit").on("click", getRandomDrink);
+$("#drink-type-submit").on("click", newDrink);
+
+// save picks click event
+$("#save-current").submit(saveCurrentPicks)
+
+// event handlers for loading and deleting date nights 
+// are initialized at the end of the loadDateNightQueue function

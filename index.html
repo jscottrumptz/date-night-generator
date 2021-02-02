@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Date Night Generator</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+        <link rel="stylesheet" href="./assets/css/style.css">
     </head>
     <body>
         <!-- Hero/Header Section Begin -->
@@ -23,19 +24,21 @@
         <!-- Hero/Header Section End-->
 
         <!-- Main Section Begin -->
-        <section class="columns is-multiline m-2">
+        <section id="dontPrint" class="columns is-multiline m-2">
+
             <!-- Search Tile Column Begin -->
             <section class="column is-one-quarter-fullhd is-full-tablet">
                 <article class="tile is-child notification is-light">
                     <div class="content">
-                        <p class="title">Date Night Randomizer</p>
+                        <p class="title">Get Random Ideas</p>
                         <p class="subtitle">for Movies, Meals and Drinks</p>
                         <p> Select any of the categories below and hit "Replace" to generate a random movie, meal, or drink selection. 
-                            Keep hitting "Replace" until you find a sugestion you like, then move on to another item. 
-                            After putting together a suitable trio, hit "Save Current Picks" to add them permanately to your Date Night Queue!
+                            Keep hitting "Replace" until you find a suggestion you like, then move on to another item. 
+                            After putting together a suitable trio, hit "Save Current Picks" to add them permanently to your Date Night Queue!
                         </p>
                         <div class="content">
-                            <!-- Movie -->
+
+                            <!-- Movie Type -->
                             <div class="field">
                                 <label class="label">Movie</label>
                                 <div class="field has-addons">
@@ -67,12 +70,13 @@
                                         </div>
                                     </div>
                                     <div class="control">
-                                    <button id="movie-genre-submit" type="submit" class="button is-dark">Replace</button>
+                                        <button id="movie-genre-submit" type="submit" class="button is-dark">Replace</button>
                                     </div>
                                 </div>
                                 
                             </div>
-                            <!-- Meal -->
+                            
+                            <!-- Meal Type -->
                             <div class="field mt-2">
                                 <label class="label">Meal</label>
                                 <div class="field has-addons">
@@ -82,8 +86,10 @@
                                                 <option disabled>Random by Type</option>
                                                 <option value="Any">- Any -</option>
                                                 <option value="Beef">Beef</option>
+                                                <option value="Breakfast">Breakfast</option>
                                                 <option value="Chicken">Chicken</option>
                                                 <option value="Dessert">Dessert</option>
+                                                <option value="Goat">Goat</option>
                                                 <option value="Lamb">Lamb</option>
                                                 <option value="Miscellaneous">Miscellaneous</option>
                                                 <option value="Pasta">Pasta</option>
@@ -91,18 +97,17 @@
                                                 <option value="Seafood">Seafood</option>
                                                 <option value="Vegan">Vegan</option>
                                                 <option value="Vegetarian">Vegetarian</option>
-                                                <option value="Breakfast">Breakfast</option>
-                                                <option value="Goat">Goat</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="control">
-                                    <button id="meal-type-submit" type="submit" class="button is-dark">Replace</button>
+                                        <button id="meal-type-submit" type="submit" class="button is-dark">Replace</button>
                                     </div>
                                 </div>
 
                                 <p class="mt-2">or</p>
 
+                                <!-- Meal Country -->
                                 <div class="field has-addons">
                                     <div class="control is-expanded">
                                         <div class="select is-fullwidth">
@@ -122,15 +127,28 @@
                                                 <option value="Italian">Italian</option>
                                                 <option value="Jamaican">Jamaican</option>
                                                 <option value="Japanese">Japanese</option>
+                                                <option value="Kenyan">Kenyan</option>
+                                                <option value="Malaysian">Malaysian</option>
+                                                <option value="Mexican">Mexican</option>
+                                                <option value="Moroccan">Moroccan</option>
+                                                <option value="Polish">Polish</option>
+                                                <option value="Russian">Russian</option>
+                                                <option value="Spanish">Spanish</option>
+                                                <option value="Thai">Thai</option>
+                                                <option value="Tunisian">Tunisian</option>
+                                                <option value="Turkish">Turkish</option>
+                                                <option value="Unknown">Unknown</option>
+                                                <option value="Vietnamese">Vietnamese</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="control">
-                                    <button id="meal-country-submit" type="submit" class="button is-dark">Replace</button>
+                                        <button id="meal-country-submit" type="submit" class="button is-dark">Replace</button>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Drinks -->
+
+                            <!-- Drink Type -->
                             <div class="field mt-2">
                                 <label class="label">Drinks</label>
                                 <div class="field has-addons">
@@ -154,12 +172,17 @@
                                         </div>
                                     </div>
                                     <div class="control">
-                                    <button id="drink-type-submit" type="submit" class="button is-dark">Replace</button>
+                                        <button id="drink-type-submit" type="submit" class="button is-dark">Replace</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button class="mt-6 button is-medium is-link is-rounded is-fullwidth" > Save Current Picks</button>
+
+                        <!-- Save Selections -->
+                        <form id="save-current">
+                            <input id="date-name" maxlength="20" class="mt-4 input is-link" type="text" placeholder="Name your date night">
+                            <button id="save-picks" type="submit" class="my-4 button is-medium is-link is-rounded is-fullwidth" > Save Current Picks</button>
+                        </form>
                     </div>
                 </article>
             </section>
@@ -176,18 +199,18 @@
                             <div class="tile is-parent">
                                 <!-- Movie Section-->
                                 <article id="featured-movie" class="tile is-parent notification is-info">
-
+                                    <!-- content populated by script.js -->
                                 </article>
                             </div>
                             <!-- Meal and Drink Tile Column -->
                             <div class="tile is-parent is-vertical">
                                 <!-- Meal Section -->
-                                <article id="featured-meal" class="tile link is-parent notification is-primary">
-                                    
+                                <article id="featured-meal" class="tile is-parent notification is-primary is-clickable">
+                                    <!-- content populated by script.js -->
                                 </article>
                                 <!-- Drink Section -->
-                                <article id="featured-drink" class="tile link is-parent notification is-warning">
-                                    
+                                <article id="featured-drink" class="tile is-parent notification is-warning is-clickable">
+                                    <!-- content populated by script.js -->
                                 </article>
                             </div>
                         </div>
@@ -199,53 +222,7 @@
                                 <p class="title">Date Night Queue</p>
                                 <p class="subtitle">Click any of your previously saved sets below to repopulate the detail view above!</p>
                                 <div id="date-night-queue" class="columns is-multiline ml-1 mb-2">
-
-                                    <!-- Saved Set Begin -->
-                                    <div class="column is-one-quarter-fullhd is-half-tablet">  
-                                        <div class="link card columns is-multiline is-vcentered is-mobile m-2" id="saved-set-1">   
-                                            <button class=" mx-3 mt-3 button is-dark is-fullwidth is-rounded">
-                                                Date Night - 1
-                                            </button>
-                                            <article class="column">
-                                                <figure class="image is-2by3">
-                                                    <img id="35056" src="https://www.themoviedb.org/t/p/w500/oXwpl4mdd8MYPkUMggREzSf9c5R.jpg">
-                                                </figure>
-                                            </article>
-                                            <div class="column">
-                                                <figure class="image is-1by1">
-                                                    <img class="is-rounded" id="52992" src="https://www.themealdb.com/images/media/meals/o2wb6p1581005243.jpg">
-                                                </figure>
-                                                <figure class="image is-1by1 mt-2">
-                                                    <img class="is-rounded" id="11001" src="https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg">
-                                                </figure>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Saved Set End -->
-
-                                    <!-- Saved Set Begin -->
-                                    <div class="column is-one-quarter-fullhd is-half-tablet">  
-                                        <div class="link card columns is-multiline is-vcentered is-mobile m-2" id="saved-set-1">   
-                                            <button class=" mx-3 mt-3 button is-dark is-fullwidth is-rounded">
-                                                Date Night - 1
-                                            </button>
-                                            <article class="column">
-                                                <figure class="image is-2by3">
-                                                    <img id="35056" src="https://www.themoviedb.org/t/p/w500/oXwpl4mdd8MYPkUMggREzSf9c5R.jpg">
-                                                </figure>
-                                            </article>
-                                            <div class="column">
-                                                <figure class="image is-1by1">
-                                                    <img class="is-rounded" id="52992" src="https://www.themealdb.com/images/media/meals/o2wb6p1581005243.jpg">
-                                                </figure>
-                                                <figure class="image is-1by1 mt-2">
-                                                    <img class="is-rounded" id="11001" src="https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg">
-                                                </figure>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Saved Set End -->
-
+                                    <!-- content populated by script.js -->
                                 </div>
                             </article>
                         </div>
@@ -260,22 +237,22 @@
         <!-- Main Section End -->
 
         <!-- Modal Begin -->
-        <div id="modal" class="modal"> <!-- use the "is-active" class to make visable-->
+        <div id="modal" class="modal">
             <div class="modal-background"></div>
             <div class="modal-card">
                 <!-- Modal Header -->
                 <header class="modal-card-head">
-                    <p id="modalTitle" class="modal-card-title"></p>
+                    <p id="modalTitle" class="modal-card-title column"></p>
                     <button id="modal-close" class="delete" aria-label="close"></button>
                 </header>
                 <!-- Modal Main -->
                 <section id="modalMain" class="modal-card-body">
-                    
+                    <!-- content populated by script.js -->
                 </section>
-                <!-- Modal Footer
-                <footer class="modal-card-foot">
-                    <button class="button is-success">Print Recipe</button>
-                </footer>  -->
+                <!-- Modal Footer -->
+                <footer id="modal-footer" class="modal-card-foot is-hidden">
+                    <button onclick="window.print()" class="button is-success">Print Recipe</button>
+                </footer>
             </div>
         </div>
         <!-- Modal End -->
@@ -288,8 +265,19 @@
                     </br>
                         <a href="https://rumptz.tech" target="_blank">J. Scott Rumptz</a>, <a href=#>Cheryl Fogerty</a>, <a href=#>Sean Johnson</a>, <a href=#>Jared Taylor</a>. 
                     </br>
-                        The website was created for educational purposes only.
+                        This website was created for educational purposes only and uses the following APIs...
                 </p>
+                <a href="https://www.themealdb.com/api.php" target="_blank">
+                    <img class="mt-1" height="100px" src="https://www.themealdb.com/images/logo-small.png">
+                
+                <span class="mx-4"></span>
+                <a href="https://www.themoviedb.org/documentation/api/" target="_blank">
+                    <img class="mt-1" width="100px" src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg">    
+                </a>
+                <span class="mx-4"></span>
+                <a href="https://www.thecocktaildb.com/api.php" target="_blank">
+                    <img class="mt-1" height="100px" src="https://www.thecocktaildb.com/images/logo.png">
+                </a>
             </div>
         </footer>
         <!-- Footer End -->
