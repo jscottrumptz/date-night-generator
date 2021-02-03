@@ -23,7 +23,7 @@ let getRandomMovie = function () {
     let random = Math.floor(Math.random() * 5) + 1;
 
     // format themoviedb.org api url to select by genre randomly from the 100 most popular results
-    let apiUrl = "https://api.themoviedb.org/3/discover/movie?api_key=0a6cff8e56d74eb3ed1b51e6620176c1&language=en-US&include_adult=false&include_video=false&with_genres=" + genre + "&vote_count.gte=100&with_original_language=en&page=" + random;
+    let apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=0a6cff8e56d74eb3ed1b51e6620176c1&language=en-US&include_adult=false&include_video=false&with_genres=${genre}&vote_count.gte=100&with_original_language=en&page=${random}`;
 
     // make a request to the url
     fetch(apiUrl)
@@ -45,7 +45,7 @@ let getRandomMovie = function () {
             } else {
                 $("#modal").addClass("is-active");
                 $("#modalTitle").text("Error: Unable to complete request");
-                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+                $("#modalMain").empty().append(`<p>${response.status} ${response.statusText}</p>`);
             }
         })  
         // alert user if there is no responce from themoviedb.org
@@ -69,7 +69,7 @@ let getRandomMealByType = function() {
         apiUrl = "https://www.themealdb.com/api/json/v1/1/random.php"
     } else {
         // format themealdb.com api url to select by category
-        apiUrl = "https://www.themealdb.com/api/json/v1/1/filter.php?c=" + type;
+        apiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${type}`;
     }
 
     // make a request to the url
@@ -92,7 +92,7 @@ let getRandomMealByType = function() {
             } else {
                 $("#modal").addClass("is-active");
                 $("#modalTitle").text("Error: Unable to complete request");
-                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+                $("#modalMain").empty().append(`<p>${response.status} ${response.statusText}</p>`);
             }
         })  
         // alert user if there is no responce from themealdb.com
@@ -116,7 +116,7 @@ let getRandomMealByCountry = function() {
         apiUrl = "https://www.themealdb.com/api/json/v1/1/random.php"
     } else {
         // format themealdb.com api url to select by country
-        apiUrl = "https://www.themealdb.com/api/json/v1/1/filter.php?a=" + country;
+        apiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`;
     }
 
     // make a request to the url
@@ -139,7 +139,7 @@ let getRandomMealByCountry = function() {
             } else {
                 $("#modal").addClass("is-active");
                 $("#modalTitle").text("Error: Unable to complete request");
-                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+                $("#modalMain").empty().append(`<p>${response.status} ${response.statusText}</p>`);
             }
         })  
         // alert user if there is no responce from themealdb.com
@@ -163,7 +163,7 @@ let getRandomDrink = function() {
         apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
     } else {
         // format thecocktaildb.com api url to select by category
-        apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=" + type;
+        apiUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${type}`;
     }
 
     // make a request to the url
@@ -186,7 +186,7 @@ let getRandomDrink = function() {
             } else {
                 $("#modal").addClass("is-active");
                 $("#modalTitle").text("Error: Unable to complete request");
-                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+                $("#modalMain").empty().append(`<p>${response.status} ${response.statusText}</p>`);
             }
         })  
         // alert user if there is no responce from thecocktaildb.com
@@ -201,7 +201,7 @@ let getRandomDrink = function() {
 let populateFeaturedMovie = function(id) {
 
     // format themoviedb.org api url
-    let apiUrl = "https://api.themoviedb.org/3/movie/" + id + "?api_key=0a6cff8e56d74eb3ed1b51e6620176c1"
+    let apiUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=0a6cff8e56d74eb3ed1b51e6620176c1`
 
     // make a request to the url
     fetch(apiUrl)
@@ -215,30 +215,30 @@ let populateFeaturedMovie = function(id) {
                         <!-- Movie Poster -->
                         <article class="tile is-child is-6" >
                             <figure class="image is-2by3">
-                            <img id="poster_path" src="https://image.tmdb.org/t/p/w500` + data.poster_path +`">
+                            <img id="poster_path" src="https://image.tmdb.org/t/p/w500${data.poster_path}">
                             </figure>
                         </article>
                         <!-- Movie Info -->
                         <article id="movie-info" class="m-4">
-                            <p class="title" id="title">` + data.title + `</p>
-                            <p class="subtitle" id="tagline">` + data.tagline + `</p>
-                            <p class="block" id="overview">` + data.overview + `</p>
-                            <span class="tag is-dark mb-1" id="vote_average">Average Rating: ` + data.vote_average + `</span>
-                            <span class="tag is-dark mb-2" id="runtime">Runtime: ` + data.runtime + ` mins</span></br>
+                            <p class="title" id="title">${data.title}</p>
+                            <p class="subtitle" id="tagline">${data.tagline}</p>
+                            <p class="block" id="overview">${data.overview}</p>
+                            <span class="tag is-dark mb-1" id="vote_average">Average Rating: ${data.vote_average}</span>
+                            <span class="tag is-dark mb-2" id="runtime">Runtime: ${data.runtime} mins</span></br>
                         </article>
                     `);
 
                     // make a new tag for each item in the movie's genre array
-                    data.genres.forEach(genre => $("#movie-info").append(`<span class="tag is-link mb-1 mx-1" id="` + genre.name + `">` + genre.name + `</span>`));
+                    data.genres.forEach(genre => $("#movie-info").append(`<span class="tag is-link mb-1 mx-1" id="${genre.name}">${genre.name}</span>`));
 
-                    $("#movie-info").append(`</br><a href="https://www.imdb.com/title/` + data.imdb_id + `/" target="_blank" class="button is-rounded is-warning mt-2">View on IMDB</a>`);
+                    $("#movie-info").append(`</br><a href="https://www.imdb.com/title/${data.imdb_id}/" target="_blank" class="button is-rounded is-warning mt-2">View on IMDB</a>`);
 
                 });
             // request fails
             } else {
                 $("#modal").addClass("is-active");
                 $("#modalTitle").text("Error: Unable to complete request");
-                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+                $("#modalMain").empty().append(`<p>${response.status} ${response.statusText}</p>`);
             }
         })  
         // alert user if there is no responce from themoviedb.org
@@ -252,7 +252,7 @@ let populateFeaturedMovie = function(id) {
 let populateFeaturedMeal = function(id) {
 
     // format themealdb.com api url
-    let apiUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id;
+    let apiUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
 
     // make a request to the url
     fetch(apiUrl)
@@ -266,13 +266,13 @@ let populateFeaturedMeal = function(id) {
                         <!-- Meal Image-->
                         <article class="tile is-child is-4" >
                             <figure class="image is-1x1">
-                                <img class="is-rounded" id="strMealThumb" src=` + data.meals[0].strMealThumb + `>
+                                <img class="is-rounded" id="strMealThumb" src=${data.meals[0].strMealThumb}>
                             </figure>
                         </article>
                         <!-- Meal Info-->
                         <article id="meal-info" class="m-4" >
-                            <p class="title" id="strMeal">` + data.meals[0].strMeal + `</p>
-                            <p class="subtitle mb-2" id="strCategory">` + data.meals[0].strCategory + ` (<span id="strArea">` + data.meals[0].strArea + `</span>)</p>
+                            <p class="title" id="strMeal">${data.meals[0].strMeal}</p>
+                            <p class="subtitle mb-2" id="strCategory">${data.meals[0].strCategory} (<span id="strArea">${data.meals[0].strArea}</span>)</p>
                             <p class="mb-2 ml-1" id="ingredients">Ingredients</p>
                         </article>
                     `);
@@ -280,11 +280,11 @@ let populateFeaturedMeal = function(id) {
                     // make a new tag for each ingredient in the meal
                     for(i = 1; i < 21; i++){
                         // make a string value to pass along the number for the array selector
-                        let ingredient = "strIngredient" + i;
+                        let ingredient = `strIngredient${i}`;
                         // make sure the selector isn't empty
                         if( data.meals[0][ingredient] != "" && data.meals[0][ingredient] != null ) {
                             // list the ingredient as a tag in the meal-info article
-                            $("#meal-info").append(`<span class="tag is-dark mb-1 mx-1 is-capitalized" id="` + ingredient + `">` + data.meals[0][ingredient] + `</span>`);
+                            $("#meal-info").append(`<span class="tag is-dark mb-1 mx-1 is-capitalized" id="${ingredient}">${data.meals[0][ingredient]}</span>`);
                         }
                     }
                     $("#meal-info").append(`<p class="tag is-light mb-1 mx-1">more details...</p>`);
@@ -293,7 +293,7 @@ let populateFeaturedMeal = function(id) {
             } else {
                 $("#modal").addClass("is-active");
                 $("#modalTitle").text("Error: Unable to complete request");
-                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+                $("#modalMain").empty().append(`<p>${response.status} ${response.statusText}</p>`);
             }
         })  
         // alert user if there is no responce from themealdb.com
@@ -307,7 +307,7 @@ let populateFeaturedMeal = function(id) {
 let populateFeaturedDrink = function(id) {
 
     // format thecocktaildb.com api url
-    let apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id;
+    let apiUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
 
     // make a request to the url
     fetch(apiUrl)
@@ -321,13 +321,13 @@ let populateFeaturedDrink = function(id) {
                         <!-- Drink Image-->
                         <article class="tile is-child is-4" >
                             <figure class="image is-1x1">
-                                <img class="is-rounded" id="strDrinkThumb" src=` + data.drinks[0].strDrinkThumb + `>
+                                <img class="is-rounded" id="strDrinkThumb" src=${data.drinks[0].strDrinkThumb}>
                             </figure>
                         </article>
                         <!-- Drink Info-->
                         <article id="drink-info" class="m-4" >
-                            <p class="title" id="strDrink">` + data.drinks[0].strDrink + `</p>
-                            <p class="subtitle mb-2" id="strCategory">` + data.drinks[0].strCategory + `</p>
+                            <p class="title" id="strDrink">${data.drinks[0].strDrink}</p>
+                            <p class="subtitle mb-2" id="strCategory">${data.drinks[0].strCategory}</p>
                             <p class="mb-2 ml-1" id="ingredients">Ingredients</p>
                         </article>
                     `);
@@ -335,11 +335,11 @@ let populateFeaturedDrink = function(id) {
                     // make a new tag for each ingredient in the drink
                     for(i = 1; i < 21; i++){
                         // make a string value to pass along the number for the array selector
-                        let ingredient = "strIngredient" + i;
+                        let ingredient = `strIngredient${i}`;
                         // make sure the selector isn't empty
                         if( data.drinks[0][ingredient] != "" && data.drinks[0][ingredient] != null ) {
                             // list the ingredient as a tag in the drink-info article
-                            $("#drink-info").append(`<span class="tag is-dark mb-1 mx-1 is-capitalized" id="` + ingredient + `">` + data.drinks[0][ingredient] + `</span>`);
+                            $("#drink-info").append(`<span class="tag is-dark mb-1 mx-1 is-capitalized" id="${ingredient}">${data.drinks[0][ingredient]}</span>`);
                         }
                     }
                     $("#drink-info").append(`<p class="tag is-light mb-1 mx-1">more details...</p>`);
@@ -348,7 +348,7 @@ let populateFeaturedDrink = function(id) {
             } else {
                 $("#modal").addClass("is-active");
                 $("#modalTitle").text("Error: Unable to complete request");
-                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+                $("#modalMain").empty().append(`<p>${response.status} ${response.statusText}</p>`);
             }
         })  
         // alert user if there is no responce from thecocktaildb.com 
@@ -363,7 +363,7 @@ let populateFeaturedDrink = function(id) {
 let mealDetail = function(id) {
 
     // format themealdb.com api url using the global featuredMeal variable
-    let apiUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + featuredMeal;
+    let apiUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${featuredMeal}`;
 
     // make a request to the url
     fetch(apiUrl)
@@ -381,25 +381,25 @@ let mealDetail = function(id) {
                     $("#modalMain").empty().append(`
                     <!-- PICTURE -->
                     <figure class="image is-square mb-2">
-                        <img id="modalImage" src="` + data.meals[0].strMealThumb + `">
+                        <img id="modalImage" src="${data.meals[0].strMealThumb}">
                     </figure>
                     <!-- INGREDIENTS -->
                     <div id="modalDetails" class="field is-grouped is-grouped-multiline">
                     </div>
                     <!-- INSTRUCTIONS -->
                     <div class="notification">
-                        <p id="modalText">` + data.meals[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
+                        <p id="modalText">${data.meals[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>")}</p>
                     </div>
                     <!-- VIDEO -->
                     <figure class="image is-16by9">
-                        <iframe id="modalVideo" class="has-ratio" width="640" height="360" src="https://www.youtube.com/embed/` + data.meals[0].strYoutube.substring(32) + `" frameborder="0" allowfullscreen></iframe>
+                        <iframe id="modalVideo" class="has-ratio" width="640" height="360" src="https://www.youtube.com/embed/${data.meals[0].strYoutube.substring(32)}" frameborder="0" allowfullscreen></iframe>
                     </figure>
 
                     <!-- PRINT SECTION -->
                     <div id="printSection" class="column is-full">
-                        <p class="title has-text-centered is-size-4">` + data.meals[0].strMeal + `</p>
+                        <p class="title has-text-centered is-size-4">${data.meals[0].strMeal}</p>
                         <p class="subtitle mb-1 is-size-6 has-text-weight-semibold">Instructions</p>
-                        <p class="is-size-7">` + data.meals[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
+                        <p class="is-size-7">${data.meals[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>")}</p>
                         </br>
                         <p class="subtitle mb-1 is-size-6 has-text-weight-semibold" >Ingredients</p>
                     </div>
@@ -408,22 +408,22 @@ let mealDetail = function(id) {
                     // make a new tag for each ingredient in the meal
                     for(i = 1; i < 21; i++){
                         // make a string value to pass along the number for the array selector
-                        let ingredient = "strIngredient" + i;
-                        let measurement = "strMeasure" + i;
+                        let ingredient = `strIngredient${i}`;
+                        let measurement = `strMeasure${i}`;
                         // make sure the selector isn't empty
                         if( data.meals[0][ingredient] != "" && data.meals[0][ingredient] != null ) {
                             // list the ingredient as a tag in the modalDetails div
                             $("#modalDetails").append(`
                             <div class="control">
                                 <div class="tags has-addons">
-                                    <span class="tag is-link is-lowercase">` + data.meals[0][measurement] + `</span>
-                                    <span class="tag is-dark is-capitalized">` + data.meals[0][ingredient] + `</span>
+                                    <span class="tag is-link is-lowercase">${data.meals[0][measurement]}</span>
+                                    <span class="tag is-dark is-capitalized">${data.meals[0][ingredient]}</span>
                                 </div>
                             </div>
                             `);
                             // list the ingredients for the print instructions
                             $("#printSection").append(`
-                                <span class="is-lowercase is-size-7"> `+ data.meals[0][measurement] + ` ` + data.meals[0][ingredient] + ` || </span>
+                                <span class="is-lowercase is-size-7"> ${data.meals[0][measurement]} ${data.meals[0][ingredient]} || </span>
                             `)
                         }
                     }
@@ -432,7 +432,7 @@ let mealDetail = function(id) {
             } else {
                 $("#modal").addClass("is-active");
                 $("#modalTitle").text("Error: Unable to complete request");
-                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+                $("#modalMain").empty().append(`<p>${response.status} ${response.statusText}</p>`);
             }
         })  
         // alert user if there is no responce from themealdb.com
@@ -446,7 +446,7 @@ let mealDetail = function(id) {
 let drinkDetail = function(id) {
     
     // format thecocktaildb.com api url using the global featuredDrink variable
-    let apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + featuredDrink;
+    let apiUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${featuredDrink}`;
 
     // make a request to the url
     fetch(apiUrl)
@@ -464,21 +464,21 @@ let drinkDetail = function(id) {
                     $("#modalMain").empty().append(`
                     <!-- PICTURE -->
                     <figure class="image is-square mb-2">
-                        <img id="modalImage" src="` + data.drinks[0].strDrinkThumb + `">
+                        <img id="modalImage" src="${data.drinks[0].strDrinkThumb}">
                     </figure>
                     <!-- INGREDIENTS -->
                     <div id="modalDetails" class="field is-grouped is-grouped-multiline">
                     </div>
                     <!-- INSTRUCTIONS -->
                     <div class="notification">
-                        <p id="modalText">` + data.drinks[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
+                        <p id="modalText">${data.drinks[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>")}</p>
                     </div>
 
                     <!-- PRINT SECTION -->
                     <div id="printSection" class="column is-full">
-                        <p class="title has-text-centered is-size-4">` + data.drinks[0].strDrink + `</p>
+                        <p class="title has-text-centered is-size-4">${data.drinks[0].strDrink}</p>
                         <p class="subtitle mb-1 is-size-6 has-text-weight-semibold">Instructions</p>
-                        <p class="is-size-7">` + data.drinks[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>") + `</p>
+                        <p class="is-size-7">${data.drinks[0].strInstructions.replace(/(\r\n|\n|\r)/g,"</br>")}</p>
                         </br>
                         <p class="subtitle mb-1 is-size-6 has-text-weight-semibold" >Ingredients</p>
                     </div>
@@ -487,22 +487,22 @@ let drinkDetail = function(id) {
                     // make a new tag for each ingredient in the drink
                     for(i = 1; i < 21; i++){
                         // make a string value to pass along the number for the array selector
-                        let ingredient = "strIngredient" + i;
-                        let measurement = "strMeasure" + i;
+                        let ingredient = `strIngredient${i}`;
+                        let measurement = `strMeasure${i}`;
                         // make sure the selector isn't empty
                         if( data.drinks[0][ingredient] != "" && data.drinks[0][ingredient] != null ) {
                             // list the ingredient as a tag in the modalDetails div
                             $("#modalDetails").append(`
                             <div class="control">
                                 <div class="tags has-addons">
-                                    <span class="tag is-link is-lowercase">` + data.drinks[0][measurement] + `</span>
-                                    <span class="tag is-dark is-capitalized">` + data.drinks[0][ingredient] + `</span>
+                                    <span class="tag is-link is-lowercase">${data.drinks[0][measurement]}</span>
+                                    <span class="tag is-dark is-capitalized">${data.drinks[0][ingredient]}</span>
                                 </div>
                             </div>
                             `);
                             // list the ingredients for the print instructions
                             $("#printSection").append(`
-                                <span class="is-lowercase is-size-7"> `+ data.drinks[0][measurement] + ` ` + data.drinks[0][ingredient] + ` || </span>
+                                <span class="is-lowercase is-size-7"> ${data.drinks[0][measurement]} ${data.drinks[0][ingredient]} || </span>
                             `)
                         }
                     }
@@ -511,7 +511,7 @@ let drinkDetail = function(id) {
             } else {
                 $("#modal").addClass("is-active");
                 $("#modalTitle").text("Error: Unable to complete request");
-                $("#modalMain").empty().append(`<p>` + response.status ` ` + response.statusText + `</p>`);
+                $("#modalMain").empty().append(`<p>${response.status} ${response.statusText}</p>`);
             }
         })  
         // alert user if there is no responce from thecocktaildb.com
@@ -532,7 +532,7 @@ let saveCurrentPicks = function(event) {
     // check if the user named the date night
     if($("#date-name").val() === "") {
         // if not, check how many date nights are currently saved and create a generic name
-        dateName = "Date Night - " + (savedDateNights.length + 1)
+        dateName = `Date Night - ${(savedDateNights.length + 1)}`
     } else {
         // use the users entered name 
         dateName = $("#date-name").val()
@@ -591,24 +591,24 @@ let loadDateNightQueue = function() {
         <div class="column is-one-quarter-fullhd is-half-tablet mb-5">
             <section class="card columns is-multiline is-vcentered is-mobile m-2 is-clickable date" id="` + id + `">   
                 <button class=" mx-3 mt-3 button is-dark is-fullwidth is-rounded">
-                    ` + dateNight.name +  `
+                    ${dateNight.name}
                 </button>
                 <article class="column">
                     <figure class="image is-2by3">
-                        <img id="movie-` + dateNight.movie + `" src="` + dateNight.movieImg + `">
+                        <img id="movie-${dateNight.movie}" src="${dateNight.movieImg}">
                     </figure>
                 </article>
                 <div class="column">
                     <figure class="image is-1by1">
-                        <img class="is-rounded" id="meal-` + dateNight.meal + `" src="` + dateNight.mealImg + `">
+                        <img class="is-rounded" id="meal-${dateNight.meal}" src="${dateNight.mealImg}">
                     </figure>
                     <figure class="image is-1by1 mt-2">
-                        <img class="is-rounded" id="drink-` + dateNight.drink + `" src="` + dateNight.drinkImg + `">
+                        <img class="is-rounded" id="drink-${dateNight.drink}" src="${dateNight.drinkImg}">
                     </figure>
                 </div>
             </section>
             <div class="is-pulled-right">
-            <span>Remove ` + dateNight.name + `</span><button id="` + id + `" class="mx-2 mt-1 delete delete-date" aria-label="close">
+            <span>Remove ${dateNight.name}</span><button id="${id}" class="mx-2 mt-1 delete delete-date" aria-label="close">
             </button> 
             </div>
         </div>
